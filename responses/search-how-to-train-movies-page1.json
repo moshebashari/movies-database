@@ -1,0 +1,354 @@
+
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/qEFTuoFIAwrnVn7IsvE8RVt2TK3.jpg",
+      "genre_ids": [
+        14,
+        10751,
+        28,
+        12
+      ],
+      "id": 1087192,
+      "original_language": "en",
+      "original_title": "How to Train Your Dragon",
+      "overview": "On the rugged isle of Berk, where Vikings and dragons have been bitter enemies for generations, Hiccup stands apart, defying centuries of tradition when he befriends Toothless, a feared Night Fury dragon. Their unlikely bond reveals the true nature of dragons, challenging the very foundations of Viking society.",
+      "popularity": 331.2,
+      "poster_path": "/q5pXRYTycaeW6dEgsCrd4mYPmxM.jpg",
+      "release_date": "2025-06-06",
+      "title": "How to Train Your Dragon",
+      "video": false,
+      "vote_average": 8.03,
+      "vote_count": 1777
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/59vDC1BuEQvti24OMr0ZvtAK6R1.jpg",
+      "genre_ids": [
+        14,
+        12,
+        16,
+        10751
+      ],
+      "id": 10191,
+      "original_language": "en",
+      "original_title": "How to Train Your Dragon",
+      "overview": "As the son of a Viking leader on the cusp of manhood, shy Hiccup Horrendous Haddock III faces a rite of passage: he must kill a dragon to prove his warrior mettle. But after downing a feared dragon, he realizes that he no longer wants to destroy it, and instead befriends the beast – which he names Toothless – much to the chagrin of his warrior father.",
+      "popularity": 17.8224,
+      "poster_path": "/ygGmAO60t8GyqUo9xYeYxSZAR3b.jpg",
+      "release_date": "2010-03-18",
+      "title": "How to Train Your Dragon",
+      "video": false,
+      "vote_average": 7.851,
+      "vote_count": 13728
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5MnP0h7RcUCeX7gpxMYoMScmfq7.jpg",
+      "genre_ids": [
+        14,
+        28,
+        12,
+        16,
+        35,
+        10751
+      ],
+      "id": 82702,
+      "original_language": "en",
+      "original_title": "How to Train Your Dragon 2",
+      "overview": "Five years have passed since Hiccup and Toothless united the dragons and Vikings of Berk. Now, they spend their time charting unmapped territories. During one of their adventures, the pair discover a secret cave that houses hundreds of wild dragons -- and a mysterious dragon rider. Hiccup and Toothless find themselves at the center of a battle to protect Berk from a power-hungry warrior.",
+      "popularity": 17.4512,
+      "poster_path": "/d13Uj86LdbDLrfDoHR5aDOFYyJC.jpg",
+      "release_date": "2014-06-05",
+      "title": "How to Train Your Dragon 2",
+      "video": false,
+      "vote_average": 7.7,
+      "vote_count": 10016
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/h3KN24PrOheHVYs9ypuOIdFBEpX.jpg",
+      "genre_ids": [
+        16,
+        10751,
+        12
+      ],
+      "id": 166428,
+      "original_language": "en",
+      "original_title": "How to Train Your Dragon: The Hidden World",
+      "overview": "As Hiccup fulfills his dream of creating a peaceful dragon utopia, Toothless’ discovery of an untamed, elusive mate draws the Night Fury away. When danger mounts at home and Hiccup’s reign as village chief is tested, both dragon and rider must make impossible decisions to save their kind.",
+      "popularity": 15.6382,
+      "poster_path": "/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg",
+      "release_date": "2019-01-03",
+      "title": "How to Train Your Dragon: The Hidden World",
+      "video": false,
+      "vote_average": 7.749,
+      "vote_count": 6787
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/lI2AHx0QQrNnEkUqUG01QHUdLDW.jpg",
+      "genre_ids": [
+        16,
+        14,
+        12,
+        28,
+        10751
+      ],
+      "id": 638507,
+      "original_language": "en",
+      "original_title": "How to Train Your Dragon: Homecoming",
+      "overview": "It's been ten years since the dragons moved to the Hidden World, and even though Toothless doesn't live in New Berk anymore, Hiccup continues the holiday traditions he once shared with his best friend. But the Vikings of New Berk were beginning to forget about their friendship with dragons. Hiccup, Astrid, and Gobber know just what to do to keep the dragons in the villagers' hearts. And across the sea, the dragons have a plan of their own...",
+      "popularity": 7.7912,
+      "poster_path": "/kXj2Qrfm994yLeuADqbOieU1mUH.jpg",
+      "release_date": "2019-12-03",
+      "title": "How to Train Your Dragon: Homecoming",
+      "video": false,
+      "vote_average": 8.035,
+      "vote_count": 1057
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        14,
+        12,
+        10751,
+        28
+      ],
+      "id": 1458319,
+      "original_language": "en",
+      "original_title": "How to Train Your Dragon 2",
+      "overview": "The second live-action adaptation of the animated trilogy. Plot TBA.",
+      "popularity": 4.1326,
+      "poster_path": "/8HUBvnbizvTkGOZfxOZBjVSWFhi.jpg",
+      "release_date": "2027-06-10",
+      "title": "How to Train Your Dragon 2",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/o7B2oaB7R9zVPrdurRKGv5qOlUY.jpg",
+      "genre_ids": [
+        16,
+        10751
+      ],
+      "id": 654571,
+      "original_language": "en",
+      "original_title": "How to Train Your Dragon: Snoggletog Log",
+      "overview": "When Hiccup and Toothless begin sharing stories of their special relationship with their respective families as they prepare for the Snoggletog Festival, it quickly becomes clear that the new generation of Vikings don’t remember the bond between dragon and human.",
+      "popularity": 1.6988,
+      "poster_path": "/imbb2UxrVossYJEvr741a4AuNpu.jpg",
+      "release_date": "2019-12-05",
+      "title": "How to Train Your Dragon: Snoggletog Log",
+      "video": false,
+      "vote_average": 7.085,
+      "vote_count": 59
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        10751,
+        16,
+        12
+      ],
+      "id": 207516,
+      "original_language": "en",
+      "original_title": "How to Train Your Dragon: Legends",
+      "overview": "How to Train Your Dragon: Legends is a DVD package that includes the shorts Legend of the Boneknapper Dragon, Gift of the Night Fury, and Book of Dragons. The first release that came out only contained Legend of the Boneknapper Dragon and Book of Dragon. A later version, titled How to Train Train Your Dragon: The Complete Shorts Collection, includes Dawn of the Dragon Racers.",
+      "popularity": 0.3453,
+      "poster_path": "/4kEVqHV5egVoSl8OhDMImJozSaj.jpg",
+      "release_date": "2010-11-15",
+      "title": "How to Train Your Dragon: Legends",
+      "video": true,
+      "vote_average": 7.713,
+      "vote_count": 68
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/1V0fPKwDkIKeTGjjvK7xSMnAODD.jpg",
+      "genre_ids": [
+        99
+      ],
+      "id": 1494489,
+      "original_language": "en",
+      "original_title": "Soaring to Life: The Making of How To Train Your Dragon",
+      "overview": "A behind-the-scenes look at the making of the live-action film \"How to Train Your Dragon,\" following writer and director Dean DeBlois' journey of reimagining the animated franchise and revealing the film's elaborate sets and filmmaking technology.",
+      "popularity": 1.1091,
+      "poster_path": "/eX9G94tNEeVNDOUglIsmJAFQdzr.jpg",
+      "release_date": "2025-06-06",
+      "title": "Soaring to Life: The Making of How To Train Your Dragon",
+      "video": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 782400,
+      "original_language": "en",
+      "original_title": "How To Train Your Dragon: The Short Film Collection",
+      "overview": "Includes four short films which are:  \"Legend of the Boneknapper Dragon\", \"Book of Dragons\", \"Gift of the Night Fury\", and \"Dawn of the Dragon Racers\".",
+      "popularity": 0.0214,
+      "poster_path": null,
+      "release_date": "2019-01-22",
+      "title": "How To Train Your Dragon: The Short Film Collection",
+      "video": true,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/eKpWn8DwS6xpAKs4eLb4PmrXnhk.jpg",
+      "id": 1458864,
+      "original_language": "en",
+      "original_title": "How to Train Your Dragon (Live-Action) Collection",
+      "overview": "A live-action remake franchise based on the DreamWorks Animation's \"How to Train Your Dragon\" films.",
+      "poster_path": "/5uiXWKH2dcWcQDP2GVFLGTmcGRp.jpg",
+      "title": "How to Train Your Dragon (Live-Action) Collection"
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 575510,
+      "original_language": "en",
+      "original_title": "Where No One Goes: The Making of How to Train Your Dragon 2",
+      "overview": "A documentary about the making of Dreamworks' How to Train Your Dragon 2.",
+      "popularity": 0.1585,
+      "poster_path": "/9cxnHykFgViRmQtKypz8NtBgMAZ.jpg",
+      "release_date": "2015-02-12",
+      "title": "Where No One Goes: The Making of How to Train Your Dragon 2",
+      "video": false,
+      "vote_average": 7.0,
+      "vote_count": 2
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/1tGnzSidWl6Swz2FQLvE85VD4Np.jpg",
+      "genre_ids": [
+        99,
+        16
+      ],
+      "id": 1437039,
+      "original_language": "en",
+      "original_title": "How to Train Your Dragon: The Technical Artistry of Dragon",
+      "overview": "Featurette for How to Train Your Dragon takes an in-depth look at how the 3D medium effects the style to the film.",
+      "popularity": 0.382,
+      "poster_path": "/bHkflgHd80hWsH0PABw0vx2E7gP.jpg",
+      "release_date": "2010-10-15",
+      "title": "How to Train Your Dragon: The Technical Artistry of Dragon",
+      "video": true,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1491185,
+      "original_language": "en",
+      "original_title": "The Making of How to Train your Dragon - Finding the Story",
+      "overview": "The Chronicles of Creation of the Movie.\r This film about creation is a unique and valuable footage.\r You will see how Chris Sanders and Dean DeBlois created How to Train Your Dragon from the beginning. Very, very interesting film for any HtTYD fan. In the film you even can see John Powell playing song \"Where's Hiccup?\".",
+      "popularity": 0.0475,
+      "poster_path": null,
+      "release_date": "",
+      "title": "The Making of How to Train your Dragon - Finding the Story",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 1487129,
+      "original_language": "nl",
+      "original_title": "Verloren Expressiveness in de aankomende How to Train your Dragon remake",
+      "overview": "",
+      "popularity": 0.0357,
+      "poster_path": "/9vf4GdNSZJHSJS4iZ2uETN0TX3d.jpg",
+      "release_date": "",
+      "title": "Verloren Expressiveness in de aankomende How to Train your Dragon remake",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/vkBMhUSaDUk3JUCS2VUk160IXMM.jpg",
+      "genre_ids": [
+        16,
+        14,
+        10751,
+        12,
+        35,
+        10770
+      ],
+      "id": 47626,
+      "original_language": "en",
+      "original_title": "Legend of the BoneKnapper Dragon",
+      "overview": "Hiccup and friends accompany their mentor, Gobber, on a quest to kill the legendary Boneknapper Dragon.",
+      "popularity": 3.9227,
+      "poster_path": "/74OqO31AaubZGgreiHIomFyOXUx.jpg",
+      "release_date": "2010-10-14",
+      "title": "Legend of the BoneKnapper Dragon",
+      "video": false,
+      "vote_average": 6.996,
+      "vote_count": 268
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/6UbuK8pO1CwGYulMT5jhBaIt7sf.jpg",
+      "genre_ids": [
+        14,
+        16,
+        28,
+        35,
+        10751
+      ],
+      "id": 79379,
+      "original_language": "en",
+      "original_title": "Book of Dragons",
+      "overview": "So you want to be a dragon trainer do you? Prepare yourself for adventure, excitement and training as Hiccup, Astrid, Toothless and Gobber tell the legend behind the Book of Dragons and reveal insider training secrets about new, never-before-seen dragons.",
+      "popularity": 1.9796,
+      "poster_path": "/jDInObzAHYGsde02gTxL8B56HGT.jpg",
+      "release_date": "2011-11-15",
+      "title": "Book of Dragons",
+      "video": false,
+      "vote_average": 6.731,
+      "vote_count": 186
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/s4NJh9hLa9ZbgiXfJpjsZ5i47ug.jpg",
+      "genre_ids": [
+        16,
+        35,
+        12,
+        10751
+      ],
+      "id": 91417,
+      "original_language": "en",
+      "original_title": "Dragons: Gift of the Night Fury",
+      "overview": "Hiccup and Toothless go on an exciting adventure and discover an island of new dragons.",
+      "popularity": 6.1227,
+      "poster_path": "/tieHyFlHwnU4gdKY9vBNCW7U5iw.jpg",
+      "release_date": "2011-11-15",
+      "title": "Dragons: Gift of the Night Fury",
+      "video": false,
+      "vote_average": 7.2,
+      "vote_count": 403
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 18
+}

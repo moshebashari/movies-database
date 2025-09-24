@@ -1,0 +1,693 @@
+
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "id": 296003,
+      "title": "Alon",
+      "original_title": "Alon",
+      "overview": "Vanni, a 17-year-old girl, spends her vacation in a seaside village. While looking for her lost puppy, she sees Fiel, a lonesome 50-year-old man. Vanni decides to hang out in the man’s house and a fondness develops between them. However, he has an ailing wife afflicted with cancer.",
+      "poster_path": "/jYzUsObrCwaYMetDUWyBVOd0nVW.jpg",
+      "media_type": "movie",
+      "original_language": "tl",
+      "genre_ids": [
+        18
+      ],
+      "popularity": 0.459,
+      "release_date": "2008-12-03",
+      "video": false,
+      "vote_average": 10.0,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "id": 1189258,
+      "title": "ALON",
+      "original_title": "ALON",
+      "overview": "ALON is a story about a young adult who is going through an identity crisis in his twenties, dealing with self-doubt, peer pressure, insecurities, low self-esteem, and feeling anti-mattering or insignificant. The story will depict a young man's monologues in which he compares himself to the waves of the sea and describes and rants about his current life position, particularly his troubles with not achieving something at his age. To connect with people, he will share his own life experiences that other people are probably going through at the moment as if he’s representing and speaking directly on behalf of the viewers.",
+      "poster_path": "/c2jdd0kjuuWXniJ3xHyWBEBicCT.jpg",
+      "media_type": "movie",
+      "original_language": "tl",
+      "genre_ids": [
+        18
+      ],
+      "popularity": 0.0143,
+      "release_date": "",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "id": 1415003,
+      "title": "Alon",
+      "original_title": "Alon",
+      "overview": "Set in a tropical island village where everyday life is interwoven with the sea. A story of hardworking, small-scale fisherfolks and their families - among the Philippines' most vulnerable sectors navigating the 'waves of life.' This film supports the national call for assertive governance in managing and protecting the country's fishing grounds and marine resources.",
+      "poster_path": "/p8OU6Nx8PW9cp2cNUtdUDiGjd3.jpg",
+      "media_type": "movie",
+      "original_language": "en",
+      "genre_ids": [],
+      "popularity": 0.0,
+      "release_date": "",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "id": 535685,
+      "name": "Chelo Alonso",
+      "original_name": "Chelo Alonso",
+      "media_type": "person",
+      "popularity": 0.2908,
+      "gender": 1,
+      "known_for_department": "Acting",
+      "profile_path": "/fBDXtR8xtMCmmCkEqEp91yxG7fL.jpg",
+      "known_for": [
+        {
+          "adult": false,
+          "backdrop_path": "/x4biAVdPVCghBlsVIzB6NmbghIz.jpg",
+          "id": 429,
+          "title": "The Good, the Bad and the Ugly",
+          "original_title": "Il buono, il brutto, il cattivo",
+          "overview": "While the Civil War rages on between the Union and the Confederacy, three men – a quiet loner, a ruthless hitman, and a Mexican bandit – comb the American Southwest in search of a strongbox containing $200,000 in stolen gold.",
+          "poster_path": "/bX2xnavhMYjWDoZp1VM6VnU1xwe.jpg",
+          "media_type": "movie",
+          "original_language": "it",
+          "genre_ids": [
+            37
+          ],
+          "popularity": 13.1213,
+          "release_date": "1966-12-22",
+          "video": false,
+          "vote_average": 8.465,
+          "vote_count": 9122
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/yYdVFbj025UPvHMN3VnrG8fovB9.jpg",
+          "id": 206004,
+          "title": "Son of Samson",
+          "original_title": "Maciste nella valle dei Re",
+          "overview": "Maciste travels to Egypt, where he leads a revolt against an evil queen. In Son of Samson, Maciste (Mark Forrest) -- scion of the famed muscleman -- travels to the Egyptian city of Tanis to checkmate villainous Queen Smedes (Chelo Alonso), who's persecuting the citizenry.",
+          "poster_path": "/jNFqjnajVrknI1MC8xzoP5H7i5M.jpg",
+          "media_type": "movie",
+          "original_language": "it",
+          "genre_ids": [
+            12,
+            28,
+            18,
+            10749
+          ],
+          "popularity": 0.9239,
+          "release_date": "1960-11-24",
+          "video": false,
+          "vote_average": 6.1,
+          "vote_count": 16
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/2qMoL9p8NG1nrfBMnuXOVoVlFoM.jpg",
+          "id": 18928,
+          "title": "Run, Man, Run",
+          "original_title": "Corri uomo corri",
+          "overview": "The legendary Tomas Milian stars as Cuchillo, a knife-throwing thief on the run from murderous bandits, sadistic American agents, his hot-blooded fiancée and a sheriff turned bounty hunter, all of whom are gunning for a hidden fortune in gold that could finance the Mexican Revolution.",
+          "poster_path": "/5j8FLFM3n6SVSQvqPoEmZcyk2l2.jpg",
+          "media_type": "movie",
+          "original_language": "it",
+          "genre_ids": [
+            37,
+            35,
+            12
+          ],
+          "popularity": 1.194,
+          "release_date": "1968-08-29",
+          "video": false,
+          "vote_average": 6.447,
+          "vote_count": 47
+        }
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/b4tAF6xP6PzvWeYShIWB2qWbnjk.jpg",
+      "id": 1244881,
+      "title": "Alone In The Night",
+      "original_title": "Solos en la noche",
+      "overview": "A group of labour lawyers hide in a house when the coup d'état of 23F takes place in Spain. Unsure of what to do, they debate between fleeing the country, staying in hiding or trying to do something to defend Spain's young democracy.",
+      "poster_path": "/fIR4praOsKJaRA3qUC2mbzDojan.jpg",
+      "media_type": "movie",
+      "original_language": "es",
+      "genre_ids": [
+        28,
+        35,
+        18
+      ],
+      "popularity": 2.3412,
+      "release_date": "2024-09-20",
+      "video": false,
+      "vote_average": 6.556,
+      "vote_count": 9
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/2ljf1zWpCAm56booVYkqUlBNglX.jpg",
+      "id": 2173,
+      "name": "Alone in Love",
+      "original_name": "연애시대",
+      "overview": "Alone in Love is a 2006 South Korea television series, starring Gam Wu-seong, Son Ye-jin, Gong Hyung-jin and Lee Ha-na. It aired on SBS from April 3 to May 23, 2006 on Mondays and Tuesdays at 21:55 for 16 episodes.\n\nThe ratings it received were not very high, but the series won acclaim for its subtle and realistic portrayal of love, marriage and divorce. The story follows Eun-ho and Dong-jin, two ordinary people - not particularly attractive or successful - as they come to terms with their relationship. Although already divorced for three years, they are unable to leave each other alone, persistently meeting, bickering, and offering support, comfort, even matchmaking for the other. The two seem destined to be together, but they are unwilling to face their past and confront the tragedy they have spent years trying to forget.\n\nIt was based on the Japanese novel Love Generation by Hisashi Nozawa, which was published in 1996 and won the 4th Shimase Literary Prize for Romance in 1997. The Korean adaptation was written by Park Yeon-seon. This was the first TV series directed by film director Han Ji-seung.",
+      "poster_path": "/v8biLlOTS6egL8UxPcKDej2MwK3.jpg",
+      "media_type": "tv",
+      "original_language": "ko",
+      "genre_ids": [
+        18
+      ],
+      "popularity": 1.8679,
+      "first_air_date": "2006-04-03",
+      "vote_average": 9.0,
+      "vote_count": 13,
+      "origin_country": [
+        "KR"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/sztoil0XfQ0cSHy4PXmYW6uAdfQ.jpg",
+      "id": 65282,
+      "name": "Home Alone",
+      "original_name": "나 혼자 산다",
+      "overview": "It can be a badge of honor to be “single.” “I Live Alone” is a documentary-style South Korean reality series that follows the members of a self-formed club called Rainbow, which is comprised of  celebrities who are single and live alone.",
+      "poster_path": "/1hqGagr94soBq70Lq7tPHvNmmxy.jpg",
+      "media_type": "tv",
+      "original_language": "ko",
+      "genre_ids": [
+        10764
+      ],
+      "popularity": 15.2707,
+      "first_air_date": "2013-03-22",
+      "vote_average": 7.353,
+      "vote_count": 17,
+      "origin_country": [
+        "KR",
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "id": 121775,
+      "name": "Bea Alonzo",
+      "original_name": "Bea Alonzo",
+      "media_type": "person",
+      "popularity": 0.6489,
+      "gender": 1,
+      "known_for_department": "Acting",
+      "profile_path": "/xFQx2iJ1UQ19WKyDRlEQbdIHZVY.jpg",
+      "known_for": [
+        {
+          "adult": false,
+          "backdrop_path": "/qPTEsaY7MIg2OJyrO2xEG6lxG4X.jpg",
+          "id": 522246,
+          "title": "Eerie",
+          "original_title": "Eerie",
+          "overview": "The unexpected and gruesome death of a student threatens the existence of an old Catholic school for girls. Pat Consolacion, the school guidance counselor, involves herself with the students in the hopes of helping them cope, and at the same time uncover the mysteries of the student’s death. Most students suspect of the strict and borderline abusive Mother Alice, who also threatened Pat’s tenure in the school because of her continuous meddling with the case. But Pat’s unusual talents lead her to knowing Eri, a former student who's been watching the whole school for years. Piece by piece, Pat uncovers the secret of the school and the monster that it nurtured for the past century.",
+          "poster_path": "/duEI37Qjtt1WaiOzZzVlkI6JO2z.jpg",
+          "media_type": "movie",
+          "original_language": "tl",
+          "genre_ids": [
+            27,
+            80,
+            53
+          ],
+          "popularity": 0.841,
+          "release_date": "2019-03-27",
+          "video": false,
+          "vote_average": 5.5,
+          "vote_count": 84
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/xuTjXyYQwYRoCNXUsiikrxdU6rX.jpg",
+          "id": 205015,
+          "title": "Four Sisters and a Wedding",
+          "original_title": "Four Sisters and a Wedding",
+          "overview": "The children of the Salazar family have been pursuing separate lives in the recent years. After a few years of not being together as a whole family, they find themselves reuniting when CJ announces his plan to marry Princess, his girlfriend for three months. Much to their shock and dismay, CJ's sisters come together for the wedding and have agreed to dissuade him from marrying his fiancée.",
+          "poster_path": "/yQgPveLenFJlA7jzmK0UuO59uVJ.jpg",
+          "media_type": "movie",
+          "original_language": "tl",
+          "genre_ids": [
+            10751,
+            35,
+            18,
+            10749
+          ],
+          "popularity": 1.1374,
+          "release_date": "2013-06-26",
+          "video": false,
+          "vote_average": 6.6,
+          "vote_count": 18
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/clrtF6oHUsg76tE3m934HG0cyWS.jpg",
+          "id": 369927,
+          "title": "A Second Chance",
+          "original_title": "A Second Chance",
+          "overview": "Popoy and Basha have had a wonderful wedding, but their subsequent married life turns out to be extremely difficult.",
+          "poster_path": "/82FpLp4gYMguvIyzu8RD2eQ0TlC.jpg",
+          "media_type": "movie",
+          "original_language": "tl",
+          "genre_ids": [
+            18,
+            10749
+          ],
+          "popularity": 1.2333,
+          "release_date": "2015-11-25",
+          "video": false,
+          "vote_average": 7.1,
+          "vote_count": 12
+        }
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "id": 11054,
+      "name": "The Get Along Gang",
+      "original_name": "The Get Along Gang",
+      "overview": "The Get Along Gang are characters created in 1983 by American Greetings' toy design and licensing division, \"Those Characters from Cleveland\", for a series of greeting cards. The Get Along Gang are a group of twelve pre-adolescent anthropomorphic animal characters in the fictional town of Green Meadow, who form a club that meets in an abandoned caboose and who have various adventures whose upbeat stories intended to show the importance of teamwork and friendship. The success of the greeting card line led to a Saturday morning television series, which aired on CBS for 13 episodes in the 1984-1985 season, with reruns from January until June 1986.",
+      "poster_path": "/awxnldwwtugtkH25TPuzopKmSst.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        16
+      ],
+      "popularity": 2.0562,
+      "first_air_date": "1984-09-15",
+      "vote_average": 7.6,
+      "vote_count": 18,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "id": 66036,
+      "name": "WWE Ride Along",
+      "original_name": "WWE Ride Along",
+      "overview": "Ever want to know what happens to your favorite WWE Superstars and Divas immediately following a WWE Live Event? On WWE Ride Along, the WWE Universe rides shotgun with the Superstars and Divas themselves as they travel from city to city on the tour that never ends. Hear inside stories and witness over-the-top hilarity that can only take place within the confines of a car.",
+      "poster_path": "/euYTaXu9fK2UsE0zixSZnTZ1BrO.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [],
+      "popularity": 1.2933,
+      "first_air_date": "2016-01-25",
+      "vote_average": 7.2,
+      "vote_count": 7,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/czl8yuefmqJYJqxree4M1LIBZeb.jpg",
+      "id": 242483,
+      "name": "You'll Never Walk Alone",
+      "original_name": "漂洋过海再爱你",
+      "overview": "Xia Yuan, an executive of a travel company, got engaged to her boyfriend Song Hangyu on her 30th birthday. It was a great harvest in both career and love. But at the engagement party, Song Hangyu disappeared. Xia Yuan found out that Song Hangyu had gone abroad, so he dropped everything and gave himself a year to look for Song Hangyu. On the other hand, Hao Weiwei, who had a relationship with Xia Yuan in Shanghai, was arranged by his father to go abroad to work and train due to the bankruptcy of his father's company. Ye Siqi, a girl born in 1995, and Qiao Bin, who grew up in Shanghai, got married and divorced. Ye Siqi, who was hot-headed and wanted to pursue a new life, also embarked on a journey. Qiao Bin, who regretted the divorce, followed Ye Siqi's footsteps and went abroad. They met by chance and went on the road together.",
+      "poster_path": "/fIkOd3yYYYhpgqTbnLEUM4844zP.jpg",
+      "media_type": "tv",
+      "original_language": "zh",
+      "genre_ids": [
+        18
+      ],
+      "popularity": 1.9554,
+      "first_air_date": "2023-12-29",
+      "vote_average": 0.0,
+      "vote_count": 0,
+      "origin_country": [
+        "CN"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/tY6ZweSX4Mg8AYNSia9vyH1su8k.jpg",
+      "id": 1095,
+      "name": "Ghost in the Shell: Stand Alone Complex",
+      "original_name": "攻殻機動隊 STAND ALONE COMPLEX",
+      "overview": "In the future when technological enhancements and robotics are a way of life, Major Motoko Kusanagi and Section 9 take care of the jobs that are too difficult for the police. Section 9 employs hackers, sharpshooters, detectives and cyborgs all in an effort to thwart cyber criminals and their plans to attack the innocent.",
+      "poster_path": "/oz9JhIUK792ISNXNpny4pSFo1yh.jpg",
+      "media_type": "tv",
+      "original_language": "ja",
+      "genre_ids": [
+        10759,
+        16,
+        80,
+        10765
+      ],
+      "popularity": 8.0983,
+      "first_air_date": "2002-10-01",
+      "vote_average": 8.223,
+      "vote_count": 397,
+      "origin_country": [
+        "JP"
+      ]
+    },
+    {
+      "adult": false,
+      "id": 2071251,
+      "name": "Eugenio Alonso Yenes",
+      "original_name": "Eugenio Alonso Yenes",
+      "media_type": "person",
+      "popularity": 0.1402,
+      "gender": 0,
+      "known_for_department": "Crew",
+      "profile_path": null,
+      "known_for": [
+        {
+          "adult": false,
+          "backdrop_path": "/jhk6D8pim3yaByu1801kMoxXFaX.jpg",
+          "id": 98,
+          "title": "Gladiator",
+          "original_title": "Gladiator",
+          "overview": "After the death of Emperor Marcus Aurelius, his devious son takes power and demotes Maximus, one of Rome's most capable generals who Marcus preferred. Eventually, Maximus is forced to become a gladiator and battle to the death against other men for the amusement of paying audiences.",
+          "poster_path": "/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg",
+          "media_type": "movie",
+          "original_language": "en",
+          "genre_ids": [
+            28,
+            18,
+            12
+          ],
+          "popularity": 13.5661,
+          "release_date": "2000-05-04",
+          "video": false,
+          "vote_average": 8.222,
+          "vote_count": 19957
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/ifR5HhZ8nlMnVBs7H0RNX97vI2O.jpg",
+          "id": 1734,
+          "title": "The Mummy Returns",
+          "original_title": "The Mummy Returns",
+          "overview": "Rick and Evelyn O’Connell, along with their 8-year-old son Alex, discover the key to the legendary Scorpion King’s might: the fabled Bracelet of Anubis. Unfortunately, a newly resurrected Imhotep has designs on the bracelet as well, and isn’t above kidnapping its new bearer, Alex, to gain control of Anubis’s otherworldly army.",
+          "poster_path": "/kdJsW7hcy1lrj7tdMPycTAQPAiR.jpg",
+          "media_type": "movie",
+          "original_language": "en",
+          "genre_ids": [
+            12,
+            28,
+            14
+          ],
+          "popularity": 8.6498,
+          "release_date": "2001-05-04",
+          "video": false,
+          "vote_average": 6.383,
+          "vote_count": 7290
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/djSAd6HUm66eVNC3PiZbYwOpD5A.jpg",
+          "id": 81005,
+          "title": "Jack the Giant Slayer",
+          "original_title": "Jack the Giant Slayer",
+          "overview": "The story of an ancient war that is reignited when a young farmhand unwittingly opens a gateway between our world and a fearsome race of giants. Unleashed on the Earth for the first time in centuries, the giants strive to reclaim the land they once lost, forcing the young man, Jack into the battle of his life to stop them. Fighting for a kingdom, its people, and the love of a brave princess, he comes face to face with the unstoppable warriors he thought only existed in legend–and gets the chance to become a legend himself.",
+          "poster_path": "/9jSI7saUX9Qz0JLh19jX2ulEwL7.jpg",
+          "media_type": "movie",
+          "original_language": "en",
+          "genre_ids": [
+            14,
+            28,
+            12,
+            18
+          ],
+          "popularity": 7.5527,
+          "release_date": "2013-02-27",
+          "video": false,
+          "vote_average": 5.858,
+          "vote_count": 5022
+        }
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/jkfDKqHKgJoVpsLnK3w6JhhXcaB.jpg",
+      "id": 83582,
+      "name": "Along came Love",
+      "original_name": "Vino el amor",
+      "overview": "",
+      "poster_path": "/xzcR9aN2OMDQvyYWQg5cEA9I97e.jpg",
+      "media_type": "tv",
+      "original_language": "es",
+      "genre_ids": [
+        18
+      ],
+      "popularity": 1.4265,
+      "first_air_date": "2016-02-17",
+      "vote_average": 3.0,
+      "vote_count": 2,
+      "origin_country": [
+        "MX"
+      ]
+    },
+    {
+      "adult": false,
+      "id": 3639444,
+      "name": "Alona Navarro",
+      "original_name": "Alona Navarro",
+      "media_type": "person",
+      "popularity": 1.4256,
+      "gender": 1,
+      "known_for_department": "Acting",
+      "profile_path": "/qF4fd2Y3qQR7jG8A1tbGZXbVHnJ.jpg",
+      "known_for": [
+        {
+          "adult": false,
+          "backdrop_path": "/1lat0QYutfuLxvLg7prCWHSxYZt.jpg",
+          "id": 1075536,
+          "title": "Suki",
+          "original_title": "Suki",
+          "overview": "A lady stripper and a gigolo promised each other that their work can't break them apart. But when lust and temptation come into the picture, they begin to question their vow.",
+          "poster_path": "/7bfDD4mtWYrExQuWDfUiY7JZ3hk.jpg",
+          "media_type": "movie",
+          "original_language": "tl",
+          "genre_ids": [
+            18
+          ],
+          "popularity": 5.2684,
+          "release_date": "2023-02-24",
+          "video": false,
+          "vote_average": 4.556,
+          "vote_count": 9
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/aqVpKRVE64sZXIwzoOfrhXDTNs8.jpg",
+          "id": 1029445,
+          "title": "Tubero",
+          "original_title": "Tubero",
+          "overview": "A boring woman worries that her man would leave her, so she hires a plumber with \"extra service\". As she falls for him, she's torn between her boyfriend and her new found love.",
+          "poster_path": "/6O9lx7VazuI1OixBm7iPREDWcsQ.jpg",
+          "media_type": "movie",
+          "original_language": "tl",
+          "genre_ids": [
+            18
+          ],
+          "popularity": 5.8296,
+          "release_date": "2022-10-21",
+          "video": false,
+          "vote_average": 4.667,
+          "vote_count": 6
+        },
+        {
+          "adult": true,
+          "backdrop_path": "/fcAMgGvNNu3xWiBHczzI0aZt7Pf.jpg",
+          "id": 214080,
+          "name": "Lovely Ladies Dormitory",
+          "original_name": "Lovely Ladies Dormitory",
+          "overview": "Five modern women live together in one roof as they deal with their families, career, and men and explore their colorful sex lives.",
+          "poster_path": "/osHg4Bt1j69uUqSKrh1mcWzFNdv.jpg",
+          "media_type": "tv",
+          "original_language": "tl",
+          "genre_ids": [
+            18
+          ],
+          "popularity": 8.232,
+          "first_air_date": "2022-12-18",
+          "vote_average": 5.3,
+          "vote_count": 10,
+          "origin_country": [
+            "PH"
+          ]
+        }
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/d7ECwAvIxkkaikzkXa9SWCYrfd8.jpg",
+      "id": 218167,
+      "name": "Along With Me",
+      "original_name": "积极的生活吧",
+      "overview": "After a series of family hardships and life struggles, He Yangguang and Luo Xingxing work together to realize their common dream of sharing their love of Lion Dance culture.",
+      "poster_path": "/zn68jPEoYeK6HSyc2TjNUx547v4.jpg",
+      "media_type": "tv",
+      "original_language": "zh",
+      "genre_ids": [
+        18
+      ],
+      "popularity": 1.0176,
+      "first_air_date": "2023-01-16",
+      "vote_average": 6.0,
+      "vote_count": 1,
+      "origin_country": [
+        "CN"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/vpAnwKn3eq7JGAbElPcljx6F8Zy.jpg",
+      "id": 104611,
+      "name": "We Are All Alone",
+      "original_name": "怪你过分美丽",
+      "overview": "Mo Xiangwan, a determined showbiz agent, faces a career setback that challenges her to rediscover her purpose. After losing two key clients due to a strategic mistake, she learns from veteran actors and shifts her focus to creating impactful projects. Along the way, she meets Mo Bei, a successful commercial lawyer, as she strives to rebuild her career and chase her dreams.",
+      "poster_path": "/ttYjkZOUfv4eXwtIgt0sMVFRPEj.jpg",
+      "media_type": "tv",
+      "original_language": "zh",
+      "genre_ids": [
+        18
+      ],
+      "popularity": 1.1327,
+      "first_air_date": "2020-06-08",
+      "vote_average": 8.5,
+      "vote_count": 4,
+      "origin_country": [
+        "CN"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dYkqSEGR43JJ4XO5UyXgcf2ctNJ.jpg",
+      "id": 375170,
+      "title": "The Tag-Along",
+      "original_title": "紅衣小女孩",
+      "overview": "Wei is nowhere to be found one day before his grandma returns from her own strange missing incident. Wei's girlfriend desperately searches for his whereabouts and discovers that a little girl in red followed them before their disappearance. Based on true events and long-circulating urban legend in Taiwan.",
+      "poster_path": "/2AaeSBHS8EhbcOS8cfAUqaPNGHP.jpg",
+      "media_type": "movie",
+      "original_language": "zh",
+      "genre_ids": [
+        27,
+        53
+      ],
+      "popularity": 1.4542,
+      "release_date": "2015-11-17",
+      "video": false,
+      "vote_average": 6.118,
+      "vote_count": 85
+    },
+    {
+      "adult": false,
+      "id": 1993500,
+      "name": "Javier Moya Alonso",
+      "original_name": "Javier Moya Alonso",
+      "media_type": "person",
+      "popularity": 0.0393,
+      "gender": 0,
+      "known_for_department": "Visual Effects",
+      "profile_path": null,
+      "known_for": [
+        {
+          "adult": false,
+          "backdrop_path": "/3SszodoxSiJRQVoFg9IRjrMcSuJ.jpg",
+          "id": 62177,
+          "title": "Brave",
+          "original_title": "Brave",
+          "overview": "In the mystical Scottish Highlands, Merida is the princess of a kingdom ruled by King Fergus and Queen Elinor. An unruly daughter and an accomplished archer, Merida one day defies a sacred custom of the land and inadvertently brings turmoil to the kingdom. In an attempt to set things right, Merida seeks out an eccentric old Wise Woman and is granted an ill-fated wish. Also figuring into Merida's quest — and serving as comic relief — are the kingdom's three lords: the enormous Lord MacGuffin, the surly Lord Macintosh, and the disagreeable Lord Dingwall.",
+          "poster_path": "/1XAuDtMWpL0sYSFK0R6EZate2Ux.jpg",
+          "media_type": "movie",
+          "original_language": "en",
+          "genre_ids": [
+            16,
+            12,
+            35,
+            10751,
+            28,
+            14
+          ],
+          "popularity": 10.6431,
+          "release_date": "2012-06-21",
+          "video": false,
+          "vote_average": 7.021,
+          "vote_count": 13711
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/g1RA3pSKwjb3ZAvm3a3H7LxAwat.jpg",
+          "id": 260513,
+          "title": "Incredibles 2",
+          "original_title": "Incredibles 2",
+          "overview": "Elastigirl springs into action to save the day, while Mr. Incredible faces his greatest challenge yet – taking care of the problems of his three children.",
+          "poster_path": "/9lFKBtaVIhP7E2Pk0IY1CwTKTMZ.jpg",
+          "media_type": "movie",
+          "original_language": "en",
+          "genre_ids": [
+            28,
+            12,
+            16,
+            10751
+          ],
+          "popularity": 20.0199,
+          "release_date": "2018-06-14",
+          "video": false,
+          "vote_average": 7.453,
+          "vote_count": 13200
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/hmAOMwVeJfdWXgK1Ikyl2eYkE99.jpg",
+          "id": 62211,
+          "title": "Monsters University",
+          "original_title": "Monsters University",
+          "overview": "A look at the relationship between Mike and Sulley during their days at Monsters University — when they weren't necessarily the best of friends.",
+          "poster_path": "/y7thwJ7z5Bplv6vwl6RI0yteaDD.jpg",
+          "media_type": "movie",
+          "original_language": "en",
+          "genre_ids": [
+            16,
+            10751
+          ],
+          "popularity": 8.3347,
+          "release_date": "2013-06-19",
+          "video": false,
+          "vote_average": 7.041,
+          "vote_count": 10928
+        }
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qIM5iwCjg3qnYnIeix2UDbmZg3V.jpg",
+      "id": 1238400,
+      "title": "You Are Not Alone: Fighting the Wolf Pack",
+      "original_title": "No estás sola: La lucha contra La Manada",
+      "overview": "Through key testimonies, this documentary looks at a gang rape that took place during the 2016 San Fermín festival and sparked protests worldwide.",
+      "poster_path": "/vupMzfqjhr6U75D9AqmuFikcafi.jpg",
+      "media_type": "movie",
+      "original_language": "es",
+      "genre_ids": [
+        99
+      ],
+      "popularity": 1.2759,
+      "release_date": "2024-02-23",
+      "video": false,
+      "vote_average": 7.094,
+      "vote_count": 16
+    }
+  ],
+  "total_pages": 183,
+  "total_results": 3650
+}
