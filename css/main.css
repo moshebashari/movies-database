@@ -7,7 +7,8 @@ li {
     justify-content: center;
     position: relative;
     padding: 10px;
-    /* width: 100%; */
+    min-height: 85Vh;
+    flex-grow: 1;
 }
 
 .container-box {
@@ -15,8 +16,6 @@ li {
     position: relative;
     flex-direction: column;
     margin: 0 15px;
-    min-width: 100%;
-    max-width: 100%;
 }
 
 .results-title {
@@ -324,7 +323,7 @@ li {
     overflow-y: auto;
 }
 
-.fliter-option{
+.fliter-option {
     cursor: pointer;
 }
 
@@ -432,12 +431,70 @@ li {
     padding-top: 5px;
 }
 
-.sort-option{
+.sort-option {
     padding-left: 5px;
     padding-bottom: 5px;
 }
 
+.background-img {
+    --background-img: url('../images/no_bg_img_avaliable.jpg');
+    /* background-image: var(--background-img); */
+    /* background-image: url('../images/no_bg_img_avaliable.jpg'); */
+    background: linear-gradient(rgba(0, 0, 0, 0.642), rgba(0, 0, 0, 0.692)), var(--background-img);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: top;
+    aspect-ratio: 1 / 0.5625;
+}
 
+.film-details {
+    max-width: 80%;
+    margin-top: -100px;
+    padding: 2em;
+    background-color: #FFFFFF;
+    align-self: center;
+    display: flex;
+    gap: 1em;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.film-name {
+    font-size: 1.5em;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.film-image {
+    display: none;
+    max-width: 12em;
+    height: 19rem;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.all-details p {
+    font-weight: 350;
+    font-size: 0.9em;
+}
+
+.opening-crawl {
+    text-align: justify;
+    margin: 1rem 0;
+}
+
+.details-p {
+    line-height: 1.5;
+    margin: 0.3rem 0;
+
+}
+
+.detail-titles {
+    display: inline;
+    font-weight: 600;
+    margin-right: 2px;
+}
 
 @media screen and (min-width: 576px) {
     .results-title {
@@ -484,11 +541,19 @@ li {
     }
 }
 
+
 @media screen and (min-width: 769px) {
     .results-title {
         font-size: 1.6em;
     }
 
+    .film-image {
+        display: block;
+    }
+
+    .film-details{
+        max-width: 85%;
+    }
 }
 
 @media screen and (min-width: 1025px) {
@@ -503,6 +568,18 @@ li {
 
     .result-container {
         grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .film-details{
+        max-width: 90%;
+    }
+
+    .film-name{
+        font-size: 1.8em;
+    }
+
+    .all-details p{
+        font-size: 1em;
     }
 }
 

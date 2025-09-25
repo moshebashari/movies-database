@@ -1,140 +1,34 @@
+import { allMovieGenres, allTvGenres, allGenres, moviesDiff, tvDiff } from './app.js'
 const API_KEY = '99fabceee87bde49948fceafdc75073b';
 const API_BEARER_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5OWZhYmNlZWU4N2JkZTQ5OTQ4ZmNlYWZkYzc1MDczYiIsIm5iZiI6MTc1NDk5NzQzNS45MjQsInN1YiI6IjY4OWIyMmJiYThjYWU2ZDdhNThlYjQ5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kqH1yeq_zLXoukiudOGjZZ_gmHc9iUkYreVvqAbSkKA'
 const body = document.getElementsByTagName('body')[0];
-const header = document.getElementsByTagName('header')[0];
-const headerBox = document.querySelector('.header-box');
-// const headerBoxSmallWin = document.querySelector('.header-box-small-win');
-const headerGenres = document.querySelector('.header-genres-box');
-// const headerGenresSmallWin = document.querySelector('.header-genres-box-small-win');
-const main = document.querySelector('.container');
 const containerBox = document.querySelector('.container-box');
-// const headerMenu = document.querySelector('.header-menu');
-// ----------
-const headerMenu = document.querySelector('.header-menu');
-// ----------
-const searchBox = document.querySelector('.search-box');
-const searchInput = document.querySelector('.search-input');
-const headerTitle = document.getElementById('header-title');
-const rightMenuBtn = document.querySelector('.right-menu-btn');
-const closeMenuBtn = document.querySelector('.close-menu-small-win');
-const windowWidth = document.documentElement.clientWidth;
-
-let headerBoxWidth;
-let allMovieGenres;
-let allTvGenres;
-let allGenres;
-let moviesDiff;
-let tvDiff;
-let searchValue;
+const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: `Bearer ${API_BEARER_TOKEN}`
+  }
+};
 let primaryFiltersMode = { mediaType: '', genre: [], fromYear: 0, toYear: 0 };
 let filtersMode;
 let urlsObj = { url: "", all: false };
 
 const sortOptions = ['original_title', 'popularity', 'revenue', 'primary_release_date', 'title', 'vote_average', 'vote_count']
 
-
-async function onStart() {
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${API_BEARER_TOKEN}`
-    }
-  };
-
-  allMovieGenres = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
-    .then(res => res.json()).then(data => data.genres)
-    .catch(err => console.error(err));
-  allTvGenres = await fetch('https://api.themoviedb.org/3/genre/tv/list?language=en', options)
-    .then(res => res.json()).then(data => data.genres)
-    .catch(err => console.error(err));
-  allGenres = [...allMovieGenres.map(genre => genre.name), ...allTvGenres.map(genre => genre.name)].sort();
-  moviesDiff = allMovieGenres.filter(obj1 => !allTvGenres.some(obj2 => obj1.id === obj2.id)).map(({ name }) => name);
-  tvDiff = allTvGenres.filter(obj1 => !allMovieGenres.some(obj2 => obj1.id === obj2.id)).map(({ name }) => name);
-  genresList();
-  // onResizeWindow();
-}
-
-async function genresList() {
-  const headerGenresArr = [headerGenres];
-  for (let heGe of headerGenresArr) {
-    for (let i = 0; i < allGenres.length; i++) {
-      const type = document.createElement('li');
-      type.className = 'genre-type';
-      type.setAttribute('data-search-type', 'genre')
-      type.setAttribute('data-type', 'header-menu');
-      const genre = allGenres[i];
-      if (genre === allGenres[i + 1]) {
-        type.setAttribute('title', `${genre} - movie`);
-      }
-      else if (genre === allGenres[i - 1]) {
-        type.setAttribute('title', `${genre} - tv`);
-      }
-      else {
-        type.setAttribute('title', genre);
-      }
-      type.textContent = genre;
-      heGe.appendChild(type);
-    }
-  }
-  // for (let genre of allGenres) {
-  //   const type = document.createElement('li');
-  //   type.className = 'genre-type';
-  //   type.textContent = genre;
-  //   headerGenres.appendChild(type);
-  // }
-
-  // for (let genre of allGenres) {
-  //   const type = document.createElement('li');
-  //   type.className = 'genre-type';
-  //   type.textContent = genre;
-  //   headerGenresSmallWin.appendChild(type);
-  // }
-}
-
-async function searchResult(event) {
-  const value = event.target.value;
-  event.target.value = '';
+async function searchResult(value) {
   const searchValue = encodeURIComponent(value);
-
   containerBox.replaceChildren();
-  containerBox.setAttribute('data-search-type', 'search');
   //results title
   const resultsTitle = createTitle(`Search results for: "${value}"`);
   containerBox.appendChild(resultsTitle);
   //filters box
   const filtersBox = createFiltersBox();
   containerBox.appendChild(filtersBox);
-  mediaTypeChoose(document.getElementById('media-type-movie'));
 
   urlsObj.url = `https://api.themoviedb.org/3/search/multi?query=${searchValue}`
 
-  const searchInfo = await resutlsPages(1);
-  // if (searchInfo.movie.results === 0) {
-  //   moviesTabLabel.classList.add('hide-element');
-  // }
-  // else {
-  //   moviesTabLabel.classList.remove('hide-element');
-  // }
-  // if (searchInfo.tv.results === 0) {
-  //   seriesTabLabel.classList.add('hide-element');
-  // }
-  // else {
-  //   seriesTabLabel.classList.remove('hide-element');
-  // }
-
-}
-
-async function moviesResults() {
-  containerBox.replaceChildren();
-  containerBox.setAttribute('data-search-type', 'movie');
-  //results title
-  const resultsTitle = createTitle(`Movies"`);
-  containerBox.appendChild(resultsTitle);
-  //filters box
-  const filtersBox = createFiltersBox();
-  containerBox.appendChild(filtersBox);
-
+  resutlsPages(1);
 }
 
 async function resutlsPages(num) {
@@ -155,23 +49,9 @@ async function resutlsPages(num) {
 
   let urls = [];
   // console.log(urlsObj.url)
-  // const dataSearchType = containerBox.getAttribute('data-search-type');
   urls.push(encodeURI(`${urlsObj.url}&page=${num * 2 - 1}`));
   urls.push(encodeURI(`${urlsObj.url}&page=${num * 2}`));
-  // url = encodeURI(`https://api.themoviedb.org/3/search/${type}?query=${searchValue}&include_adult=false&language=en-US&page=${num}`);
-  // const moviesTabInput = document.getElementById('movies-tab');
-  // if (moviesTabInput){
-  //     moviesTabInput.checked = true;
-  // }
-
   for (let url of urls) {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${API_BEARER_TOKEN}`
-      }
-    };
     const response = await fetch(url, options)
       .then(response => response.json())
       .catch(err => console.error(err));
@@ -181,20 +61,6 @@ async function resutlsPages(num) {
     searchInfo.results = results.length;
     searchInfo.totalPages = Math.ceil(response.total_pages / 2);
     searchInfo.totalResults = response.total_results
-    // if (containerBox.getAttribute('data-search-type') === 'search'){
-    //   const tab = document.getElementById(`${type}-tab`);
-    //   if (type === 'movie' && results.length > 0){
-    //     tab.checked = true;
-    //   }
-    //   if (results.length === 0){
-    //     tab.checked = false;
-    //     tab.nextElementSibling.classList.add('hide-element');
-    //     // tab.disable = true;
-    //   }
-    //   else{
-    //     tab.nextElementSibling.classList.remove('hide-element');
-    //   }
-    // }
 
     await createResultsBox(results, resultsContainer);
     containerBox.appendChild(resultsContainer);
@@ -253,8 +119,6 @@ function createFiltersBox() {
   filtersBox.appendChild(genreFilter);
   const genresList = document.createElement('div');
   genresList.className = 'filter-list genre-filter-list hide-element';
-  // const genreOptionAll = createGenreOption('all');
-  // genresList.appendChild(genreOptionAll);
   const allGenresNoDuplicate = [...new Set(allGenres)];
   for (let genre of allGenresNoDuplicate) {
     const genreOption = createGenreOption(genre);
@@ -312,7 +176,7 @@ function createSelectFilter(title, className) {
   textBtn.classList = 'text-btn';
   textBtn.setAttribute('data-type', 'select-filter');
   selectBtn.appendChild(textBtn);
-  if (title === 'sort'){
+  if (title === 'sort') {
     fitle.textContent = '';
     textBtn.textContent = 'popularity.desc'
   }
@@ -470,7 +334,6 @@ async function createResultCard(result, type) {
   else {
     imgBlob = await fetch(`./images/no_image_available.jpg`).then(result => result.blob());
   }
-  // imageBox.style.setProperty('--background-image', `url(${URL.createObjectURL(imgBlob)})`)
   img.src = URL.createObjectURL(imgBlob);
   img.setAttribute('alt', result.title);
   img.className = 'result-img';
@@ -479,7 +342,9 @@ async function createResultCard(result, type) {
   playBtn1.className = 'play-btn1 bi bi-play-fill';
   imageBox.appendChild(playBtn1)
   const playBtn2 = document.createElement('i');
+  playBtn2.id = `playbtn-${result.id}`;
   playBtn2.className = 'play-btn2 bi bi-play-circle-fill';
+  playBtn2.setAttribute('data-type', 'select-media');
   imageBox.appendChild(playBtn2)
   //name
   const resultTitle = document.createElement('p');
@@ -513,100 +378,6 @@ async function createResultCard(result, type) {
   resultInfo.appendChild(mediaType);
   resultBox.appendChild(resultInfo);
   return resultBox;
-}
-
-function showResultsByType(type) {
-  const moviesContainer = document.getElementById('movie-result-container');
-  const seriesContainer = document.getElementById('tv-result-container')
-  if (type === 'movie') {
-    seriesContainer.classList.add('hide-element');
-    moviesContainer.classList.remove('hide-element');
-  }
-  if (type === 'tv') {
-    moviesContainer.classList.add('hide-element');
-    seriesContainer.classList.remove('hide-element');
-  }
-}
-
-function onResizeWindow() {
-  const clientWidth = document.documentElement.clientWidth;
-
-  if (clientWidth > 1025) {
-    if (document.querySelector('.win-blocker')) {
-      closeMenu()
-    }
-  }
-
-}
-
-// function changeHeader(small) {
-//   if (small && isNotSmallWin) {
-//   }
-//   else if (!small && isNotBigWin) {
-//     headerMenu.classList.remove('right-menu');
-//     headerMenu.classList.remove('hide-menu');
-//     body.classList.remove('disable-scroll');
-//     // -------------
-//     headerBoxSmallWin.classList.add('hide-element');
-//     headerBox.classList.remove('hide-element');
-//     // -------------
-//     const isMenuOpen = document.querySelector('.win-blocker');
-//     if (isMenuOpen) {
-//       isMenuOpen.remove()
-//       const isListOpen = document.getElementById('header-element-list');
-//       if (isListOpen) {
-//         isListOpen.classList.remove('header-menu-list-small-win');
-//         isListOpen.classList.add('header-menu-list');
-//         const listDataBox = isListOpen.querySelector('.list-data-box-small-win');
-//         listDataBox.classList.remove('list-data-box-small-win');
-//         listDataBox.classList.add('list-data-box');
-//         isListOpen.remove();
-//         body.removeEventListener('click', elementList);
-//       }
-//     }
-//   }
-// }
-
-function showRightMenu() {
-  const winBlocker = document.createElement('div');
-  winBlocker.className = 'win-blocker';
-  winBlocker.setAttribute('data-type', 'close-menu');
-  body.classList.add('disable-scroll');
-  headerBox.appendChild(winBlocker);
-  // -----------
-  // headerBoxSmallWin.appendChild(winBlocker);
-  // -----------
-  headerMenu.classList.add('show-menu');
-  headerMenu.classList.remove('hide-menu');
-  headerMenu.classList.remove('hide-element');
-}
-
-function showGenresBox(element) {
-  element.firstElementChild.classList.toggle('hide-element');
-  body.addEventListener('click', (e) => closeGenresBox(e));
-}
-
-function closeGenresBox(e) {
-  if (!e.target.classList.contains('header-genres')) {
-    headerGenres.classList.add('hide-element');
-    // headerGenresSmallWin.classList.add('hide-element');
-    body.removeEventListener('click', closeGenresBox);
-  }
-}
-
-function closeMenu() {
-  const winBlocker = document.querySelector('.win-blocker');
-  winBlocker.remove();
-  headerMenu.classList.add('hide-menu');
-  headerMenu.addEventListener('animationend', removeDisableScroll)
-}
-
-function removeDisableScroll() {
-  body.classList.remove('disable-scroll')
-  headerMenu.removeEventListener('animationend', removeDisableScroll)
-  // headerMenu.classList.add('hide-element');
-  headerMenu.classList.remove('show-menu');
-  headerMenu.classList.remove('hide-menu');
 }
 
 function openFiltersBox() {
@@ -679,7 +450,6 @@ function yearOptionChoose(element) {
     primaryFiltersMode.toYear = elementYear
   }
 
-
   const textBtn = element.parentElement.previousElementSibling.children[0];
   textBtn.textContent = elementYear;
 }
@@ -702,16 +472,7 @@ function mediaTypeChoose(element, check = true) {
   // allFilterLists[1].previousElementSibling.children[0].textContent = '';
   // allFilterLists[2].previousElementSibling.children[0].textContent = '';
   const genreChildren = allFilterLists[0].children;
-  // if (type === 'all') {
-  //   primaryFiltersMode.mediaType = 'all';
-  //   if (prevType === 'tv') {
-  //     showAllYearOptions(fromChildren, toChildren)
-  //     showAllGenreOptions(genreChildren, moviesDiff);
-  //   }
-  //   if (prevType === 'movie') {
-  //     showAllGenreOptions(genreChildren, tvDiff);
-  //   }
-  // }
+
   if (type === 'movie') {
     primaryFiltersMode.mediaType = 'movie';
     hideDiffGenreOptions(genreChildren, tvDiff);
@@ -733,16 +494,6 @@ function mediaTypeChoose(element, check = true) {
   }
   resetAllFilters();
   element.parentElement.setAttribute('data-current-type', type);
-}
-
-function showAllGenreOptions(genreChildren, diff) {
-  let i = 0;
-  for (let genreOption of genreChildren) {
-    if (genreOption.children[1].textContent === diff[i]) {
-      genreOption.classList.remove('hide-element');
-      i++
-    }
-  }
 }
 
 function showAllYearOptions(fromChildren, toChildren) {
@@ -809,11 +560,6 @@ function filterMedia() {
   }
 
   urlsObj.url = `https://api.themoviedb.org/3/discover/${type}?include_adult=false&with_original_language=en${fromYear}${toYear}${genres}&without_genres=10749`;
-  // for (let i = 0; i < mediaType.length; i++) {
-  //   // urls.push(encodeURI(`https://api.themoviedb.org/3/discover/${mediaType[i]}?${fromYear}&${toYear}&${genres}&page=${pages[i]}`));
-  // }
-
-  // return urls;
 }
 
 function mediaResults(element) {
@@ -892,7 +638,7 @@ function createSortOption(option, dir) {
   return op;
 }
 
-function sortOptionChoose(element){
+function sortOptionChoose(element) {
   let sortOption = element.textContent;
   const textBtn = element.parentElement.previousElementSibling.children[0];
   textBtn.textContent = sortOption;
@@ -902,70 +648,63 @@ function sortOptionChoose(element){
   resutlsPages(1);
 }
 
-// -----------------------------------------EventLiseners functions----------------------------------------
-function allHeaderEventLiteners(event) {
-  const element = event.target;
-  if (element.classList.contains('header-genres')) {
-    showGenresBox(element);
-    // closeGenresBox();
+async function showSelectedMedia(element) {
+  const id = element.id.split('-')[1];
+  console.log(id);
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}`, options)
+    .then(response => response.json())
+    .catch(err => console.error(err));
+
+  containerBox.replaceChildren();
+  const backgroudImg = document.createElement('div');
+  backgroudImg.className = 'background-img';
+  if (response.backdrop_path) {
+    backgroudImg.style.setProperty('--background-img', `url(https://image.tmdb.org/t/p/w500${response.backdrop_path})`)
   }
-  if (element.getAttribute('data-type') === 'right-menu-btn') {
-    showRightMenu();
+  containerBox.appendChild(backgroudImg);
+  //main div
+  const filmDetails = document.createElement('div');
+  filmDetails.className = 'film-details';
+  containerBox.appendChild(filmDetails);
+  //film image
+  const img = document.createElement('img');
+  img.className = 'film-image';
+  let imgBlob;
+  if (response.poster_path) {
+    imgBlob = await fetch(`https://image.tmdb.org/t/p/w300${response.poster_path}`).then(result => result.blob());
   }
-  else if (element.getAttribute('data-type') === 'close-menu') {
-    closeMenu();
+  else {
+    imgBlob = await fetch(`./images/no_image_available.jpg`).then(result => result.blob());
   }
-  else if (element.getAttribute('data-type') === 'header-menu') {
-    mediaResults(element);
-  }
+  img.src = URL.createObjectURL(imgBlob);
+  img.alt = response.title;
+  filmDetails.appendChild(img);
+  // film name
+  const detailsDiv = document.createElement('div');
+  detailsDiv.className = 'all-details';
+  const filmName = document.createElement('h1');
+  filmName.className = 'film-name'
+  filmName.textContent = response.title;
+  detailsDiv.appendChild(filmName);
+  // opening crawl
+  const overview = document.createElement('p');
+  overview.className = 'opening-crawl';
+  overview.textContent = response.overview;
+  detailsDiv.appendChild(overview);
+  // relaese date
+  const release_title = document.createElement('span');
+  const released = document.createElement('p');
+  released.className = 'details-p';
+  release_title.className = 'detail-titles';
+  release_title.textContent = 'Released: ';
+  released.appendChild(release_title);
+  const date = document.createTextNode(`${response.release_date}`);
+  released.appendChild(date);
+  detailsDiv.appendChild(released);
+  filmDetails.appendChild(detailsDiv)
 }
 
-function allHeaderChangeEventListener(event) {
-  if (event.target.getAttribute('data-type') === 'search-input') {
-    if (event.keyCode === 13 || event.key === 'Enter') {
-      searchResult(event);
-    }
-  }
+export {
+  searchResult, resutlsPages, openFiltersBox, openFilterLists, genreOptionChoose,
+  yearOptionChoose, mediaTypeChoose, filterBtnClick, sortOptionChoose, mediaResults, showSelectedMedia
 }
-
-function allMainEventLisenters(event) {
-  const element = event.target;
-  if (element.previousElementSibling && element.previousElementSibling.checked === false) {
-    showResultsByType(element.getAttribute('for').split('-')[0]);
-  }
-
-  else if (element.getAttribute('data-type') === 'page-btn' && !element.classList.contains('current-page-btn')) {
-    resutlsPages(parseInt(element.textContent));
-  }
-
-  else if (element.getAttribute('data-type') === 'select-filter') {
-    openFilterLists(element)
-  }
-
-  else if (element.id === 'filter-btn') {
-    openFiltersBox();
-  }
-
-  else if (element.getAttribute('data-type') === 'genre-option') {
-    genreOptionChoose(element);
-  }
-  else if (element.getAttribute('data-type') === 'year-option') {
-    yearOptionChoose(element);
-  }
-  else if (element.getAttribute('data-type') === 'media-type-option') {
-    mediaTypeChoose(element);
-  }
-  else if (element.id === 'filter-ex-btn') {
-    filterBtnClick();
-  }
-  else if (element.getAttribute('data-type') === 'sort-option'){
-    sortOptionChoose(element);
-  }
-
-}
-
-document.addEventListener('DOMContentLoaded', onStart);
-header.addEventListener('click', allHeaderEventLiteners);
-header.addEventListener('keydown', allHeaderChangeEventListener);
-main.addEventListener('click', allMainEventLisenters)
-window.addEventListener('resize', onResizeWindow);

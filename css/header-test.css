@@ -257,6 +257,10 @@ header {
     }
 }
 
+.footer{
+    height: 50px;
+}
+
 /* @media screen and (min-width: 481px) {} */
 
 /* @media screen and (min-width: 769px) {
