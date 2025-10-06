@@ -1,0 +1,133 @@
+.main-box-trending {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+    margin: 20px 0;
+    min-width: 100%;
+    max-width: 100%;
+    position: relative;
+}
+
+.main-result-trending-box {
+    position: relative;
+}
+
+.main-result-trending-box:hover .arrow-trending {
+    display: block;
+}
+
+.result-box-trending {
+    display: flex;
+    /* overflow: hidden; */
+    /* overflow-y: auto; */
+    flex-basis: calc(100% / 2);
+    flex-grow: 1;
+    flex-shrink: 1;
+    gap: 12px;
+    position: relative;
+    /* transform: translateX(calc(100% / 6)); */
+    transition: transform 0.3s ease-in-out;
+    z-index: 0;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.result-box-trending>.result-box {
+    min-width: calc(100% / 2 - 10px);
+    max-width: calc(100% / 2 - 10px);
+}
+
+.cover-result-box {
+    height: 100%;
+    min-width: 600px;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+}
+
+.cover-result-box-left {
+    left: -600px;
+}
+
+.cover-result-box-right {
+    right: -600px;
+}
+
+.arrow-trending {
+    display: none;
+    position: absolute;
+    width: 30px;
+    /* display: flex;
+    align-items: center; */
+    z-index: 2;
+    bottom: 0;
+    top: 0;
+    background-color: #00000067;
+    padding: 0 7px;
+    cursor: pointer;
+}
+
+.arrow-trending:hover .arrow-icon {
+    font-size: 2em;
+    left: 10%;
+    margin-top: -20px;
+    color: #ffffffe2;
+}
+
+.left-arrow-trending {
+    left: 0;
+}
+
+.right-arrow-trending {
+    right: 0;
+}
+
+.arrow-icon {
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    font-size: 1.5em;
+    color: #ffffff94;
+}
+
+.all-trending-btn{
+    align-self: flex-end;
+    padding-top: 10px;
+    padding-right: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+.all-trending-btn:hover{
+    color: var(--green-color);
+}
+
+@media screen and (min-width: 576px) {
+    .result-box-trending {
+        flex-basis: calc(100% / 4);
+    }
+
+    .result-box-trending>.result-box {
+        min-width: calc(100% / 4 - 10px);
+        max-width: calc(100% / 4 - 10px);
+    }
+}
+
+
+@media screen and (min-width: 769px) {}
+
+@media screen and (min-width: 1025px) {
+    .result-box-trending {
+        flex-basis: calc(100% / 6);
+    }
+
+    .result-box-trending>.result-box {
+        min-width: calc(100% / 6 - 10px)
+    }
+}
+
+@media screen and (min-width: 1201px) {}
+
+.hide-element {
+    display: none;
+}

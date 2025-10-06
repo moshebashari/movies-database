@@ -32,6 +32,10 @@ async function searchResult(value) {
 }
 
 async function resutlsPages(num) {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
   let pagesBox = document.querySelector('.pages-box');
   if (pagesBox) {
     pagesBox.remove();
@@ -321,6 +325,7 @@ async function createResultsBox(results, resultsContainer) {
 async function createResultCard(result, type) {
   const resultBox = document.createElement('div');
   resultBox.className = 'result-box';
+  // console.log(result.id);
   const imageBox = document.createElement('div');
   imageBox.className = 'image-box';
   resultBox.appendChild(imageBox);
@@ -338,14 +343,19 @@ async function createResultCard(result, type) {
   img.setAttribute('alt', result.title);
   img.className = 'result-img';
   imageBox.appendChild(img);
+  //media type
+  const mediaType = document.createElement('p');
+  mediaType.className = 'media-type';
+  mediaType.textContent = type;
+  imageBox.appendChild(mediaType);
   const playBtn1 = document.createElement('i');
   playBtn1.className = 'play-btn1 bi bi-play-fill';
-  imageBox.appendChild(playBtn1)
+  resultBox.appendChild(playBtn1)
   const playBtn2 = document.createElement('i');
   playBtn2.id = `playbtn-${result.id}`;
   playBtn2.className = 'play-btn2 bi bi-play-circle-fill';
   playBtn2.setAttribute('data-type', 'select-media');
-  imageBox.appendChild(playBtn2)
+  resultBox.appendChild(playBtn2)
   //name
   const resultTitle = document.createElement('p');
   resultTitle.id = `title-${result.id}`;
@@ -371,11 +381,16 @@ async function createResultCard(result, type) {
     }
   }
   resultInfo.appendChild(releaseYear);
-  //media type
-  const mediaType = document.createElement('p');
-  mediaType.className = 'media-type';
-  mediaType.textContent = type;
-  resultInfo.appendChild(mediaType);
+  //rate
+  const rate = document.createElement('p');
+  rate.className = 'rate';
+  const star = document.createElement('span');
+  star.className = 'rate-star';
+  star.innerHTML = '&#9733;';
+  rate.appendChild(star)
+  const vote_avarge = document.createTextNode(`${result.vote_average}`);
+  rate.appendChild(vote_avarge);
+  resultInfo.appendChild(rate);
   resultBox.appendChild(resultInfo);
   return resultBox;
 }
@@ -571,7 +586,10 @@ function mediaResults(element) {
     titleTop = type;
   }
   else if (type === 'genre') {
-    const genre = element.textContent;
+    let genre = element.textContent;
+    if (genre[genre.length - 1] === ',') {
+      genre = genre.slice(0, -1);
+    }
     primaryFiltersMode.genre = [genre];
     if (moviesDiff.includes(genre)) {
       primaryFiltersMode.mediaType = 'movie';
@@ -588,7 +606,7 @@ function mediaResults(element) {
         primaryFiltersMode.mediaType = 'tv';
       }
     }
-    titleTop = `${primaryFiltersMode.mediaType} - ${element.textContent}`;
+    titleTop = `${primaryFiltersMode.mediaType} - ${genre}`;
   }
 
   primaryFiltersMode.fromYear = 0;
@@ -651,7 +669,7 @@ function sortOptionChoose(element) {
 async function showSelectedMedia(element) {
   const id = element.id.split('-')[1];
   console.log(id);
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}`, options)
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?append_to_response=credits`, options)
     .then(response => response.json())
     .catch(err => console.error(err));
 
@@ -701,10 +719,105 @@ async function showSelectedMedia(element) {
   const date = document.createTextNode(`${response.release_date}`);
   released.appendChild(date);
   detailsDiv.appendChild(released);
+  // runtime
+  const runtime_title = document.createElement('span');
+  const runtime = document.createElement('p');
+  runtime.className = 'details-p';
+  runtime_title.className = 'detail-titles';
+  runtime_title.textContent = 'Duration: ';
+  runtime.appendChild(runtime_title);
+  let duration = ''
+  if (response.runtime) {
+    const durInt = parseInt(response.runtime);
+    const hour = Math.floor(durInt / 60);
+    const min = durInt % 60;
+    if (hour > 0) {
+      duration += `${hour}h `;
+    }
+    if (min > 0) {
+      duration += `${min}m`;
+    }
+  }
+  else {
+    duration = 'unknown';
+  }
+  const dur = document.createTextNode(`${duration}`);
+  runtime.appendChild(dur);
+  detailsDiv.appendChild(runtime);
+  // genres
+  const genres_title = document.createElement('span');
+  const genres = document.createElement('p');
+  genres.className = 'details-p';
+  genres_title.className = 'detail-titles';
+  genres_title.textContent = 'Genres: ';
+  genres.appendChild(genres_title);
+  for (let genre of response.genres) {
+    const gen = createGenresOption(genre)
+    genres.appendChild(gen);
+    const space = document.createTextNode(' ');
+    genres.appendChild(space);
+  }
+  detailsDiv.appendChild(genres);
+  // actors
+  const actors_title = document.createElement('span');
+  const actors = document.createElement('p');
+  actors.className = 'details-p';
+  actors_title.className = 'detail-titles';
+  actors_title.textContent = 'Actors: ';
+  actors.appendChild(actors_title);
+  const cast = response.credits.cast;
+  const len = cast.length > 10 ? 10 : cast.length;
+  for (let i = 0; i < len; i++) {
+    const act = createActorsOption(cast[i]);
+    actors.appendChild(act);
+    const space = document.createTextNode(' ');
+    actors.appendChild(space);
+  }
+  detailsDiv.appendChild(actors);
+  // rate
+  const rate_title = document.createElement('span');
+  const rate = document.createElement('p');
+  rate.className = 'details-p';
+  rate_title.className = 'detail-titles';
+  rate_title.textContent = 'Rate: ';
+  rate.appendChild(rate_title);
+  const vote_average = document.createTextNode(`${response.vote_average}/10 (${response.vote_count})`);
+  rate.appendChild(vote_average);
+  detailsDiv.appendChild(rate);
   filmDetails.appendChild(detailsDiv)
+  // add to favoirte button
+  const addFavoriteBtn = document.createElement('div');
+  addFavoriteBtn.id = 'add-favor-btn';
+  addFavoriteBtn.className = 'add-to-favorite-btn';
+  const star = document.createElement('span');
+  star.className = 'rate-star';
+  star.innerHTML = '&#9733;';
+  addFavoriteBtn.appendChild(star)
+  const textBtn = document.createTextNode(` Add to favorite`);
+  addFavoriteBtn.appendChild(textBtn);
+  filmDetails.appendChild(addFavoriteBtn);
+}
+
+function createGenresOption(genre) {
+  let gen = document.createElement('span');
+  gen.className = 'detail-list';
+  gen.setAttribute('data-type', 'show-media');
+  gen.setAttribute('data-search-type', 'genre');
+  gen.textContent = `${genre.name},`;
+  return gen;
+}
+
+function createActorsOption(actor) {
+  let act = document.createElement('span');
+  act.className = 'detail-list';
+  act.setAttribute('data-type', '');
+  act.setAttribute('data-search-type', 'actor');
+  act.textContent = `${actor.name},`;
+  return act;
 }
 
 export {
   searchResult, resutlsPages, openFiltersBox, openFilterLists, genreOptionChoose,
-  yearOptionChoose, mediaTypeChoose, filterBtnClick, sortOptionChoose, mediaResults, showSelectedMedia
+  yearOptionChoose, mediaTypeChoose, filterBtnClick, sortOptionChoose, mediaResults, showSelectedMedia,
+  createResultsBox, urlsObj, createTitle
 }
