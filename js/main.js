@@ -300,10 +300,10 @@ async function createResultCard(result, type, fav = false) {
   }
   resultInfo.appendChild(releaseYear);
   //down arrow
-  const downArrow = document.createElement('i');
-  downArrow.className = 'more-detail-down-arrow bi bi-chevron-down';
-  downArrow.setAttribute('data-type', 'more-info');
-  resultInfo.appendChild(downArrow);
+  // const downArrow = document.createElement('i');
+  // downArrow.className = 'more-detail-down-arrow bi bi-chevron-down';
+  // downArrow.setAttribute('data-type', 'more-info');
+  // resultInfo.appendChild(downArrow);
   //rate
   const rate = document.createElement('p');
   rate.className = 'rate';
