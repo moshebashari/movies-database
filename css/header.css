@@ -33,26 +33,6 @@ header {
     padding-left: 10px;
 }
 
-
-/* .header-box {
-    display: none;
-    align-items: center;
-    position: relative;
-    gap: 60px;
-    padding: 10px 0;
-    margin: 0 15px;
-    min-width: 100%;
-}
-
-.header-box-small-win {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    gap: 6px;
-    margin: 0 15px;
-    min-width: 100%;
-} */
-
 .header-box {
     display: flex;
     flex-direction: column;
@@ -62,10 +42,25 @@ header {
     min-width: 100%;
 }
 
-.header-menu>ul {
+.header-menu {
     display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 320px;
+    height: 100vh;
+    background-color: whitesmoke;
+    z-index: 10;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 10px;
+}
+
+.header-menu>ul {
+    display: flex;
+    flex-direction: column;
     gap: 1.3rem;
-    /* padding: 10px; */
     position: relative;
 }
 
@@ -85,7 +80,6 @@ header {
 
 .header-genres {
     position: relative;
-    /* display: inline-block; */
 }
 
 .header-genres-box {
@@ -93,12 +87,9 @@ header {
     font-size: 0.85em;
     column-count: 2;
     column-gap: 10px;
-    /* position: absolute; */
     left: -5px;
     background-color: whitesmoke;
     padding: 7px;
-    margin-top: 10px;
-    /* border: 1px solid #000; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 10;
 }
@@ -126,34 +117,10 @@ header {
     color: white;
 }
 
-/* 
-.genres-types-box {
-    display: none;
-    background-color: whitesmoke;
-    width: 100px;
-    height: 50px;
-} */
-
 .header-genres-box-small-win {
     display: block;
     margin-top: 10px;
 }
-
-/* .search-box {
-    position: absolute;
-    right: 0;
-    border: 1px solid rgb(171, 170, 170);
-    border-radius: 2px;
-}
-
-.search-box-small-win {
-    position: relative;
-    border: 1px solid rgb(171, 170, 170);
-    margin-left: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    animation: wideBoxSmallWin 0.5s ease-out;
-} */
 
 .search-box {
     position: relative;
@@ -180,13 +147,6 @@ header {
     color: rgb(171, 170, 170);
 }
 
-/* .search-input {
-    height: 40px;
-    width: 30ch;
-    font-size: 0.9rem;
-    border: none;
-} */
-
 @keyframes wideBox {
     from {
         width: 15ch;
@@ -196,14 +156,6 @@ header {
         width: 30ch;
     }
 }
-
-/* .search-input-small-win {
-    height: 40px;
-    width: 30ch;
-    font-size: 0.9rem;
-    border: none;
-    min-width: calc(95% - 30px);
-} */
 
 .search-input {
     height: 40px;
@@ -223,7 +175,7 @@ header {
     min-width: 100vw;
     min-height: 100vh;
     background-color: rgba(0, 0, 0, 0.57);
-    z-index: 1;
+    z-index: 9;
 }
 
 .disable-scroll {
@@ -237,8 +189,6 @@ header {
     border: 1px solid rgb(203, 202, 202);
     border-radius: 1px;
     font-size: 1.3rem;
-    /* margin-left: 20px;
-    margin-right: auto; */
     padding: 0 5px;
     cursor: pointer;
     width: 22px
@@ -249,22 +199,10 @@ header {
     color: var(--green-color);
 }
 
-.right-menu {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 320px;
-    height: 100vh;
-    background-color: whitesmoke;
-    z-index: 10;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 0 10px;
-}
+
 
 .show-menu {
+    display: flex;
     animation: showRightMenu 0.5s ease-out;
 }
 
@@ -305,7 +243,6 @@ header {
 }
 
 .hide-menu {
-    /* right: -350px; */
     animation: closeMenu 0.3s ease-out forwards;
 }
 
@@ -320,16 +257,8 @@ header {
     }
 }
 
-/* @media screen and (min-width: 481px) {} */
-
-@media screen and (min-width: 769px) {
-    /* .header-box-small-win {
-        display: flex;
-    }
-
-    .header-box {
-        display: none;
-    } */
+.footer{
+    height: 50px;
 }
 
 /* @media screen and (max-width: 1025px){
@@ -339,14 +268,6 @@ header {
 } */
 
 @media screen and (min-width: 1025px) {
-    /* .header-box-small-win {
-        display: none;
-    }
-
-    .header-box {
-        display: flex;
-        min-width: 1020px;
-    } */
 
     .header-box {
         min-width: 1020px;
@@ -374,8 +295,19 @@ header {
         display: none;
     }
 
-    .header-menu>ul {
+    .header-menu {
         display: flex;
+        position: relative;
+        background-color: #fff;
+        width: auto;
+        height: auto;
+        gap: 1.3rem;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .header-menu>ul {
+        flex-direction: row;
     }
 
     #header-title {
@@ -393,6 +325,10 @@ header {
         line-height: 40px;
         text-align: center;
 
+    }
+
+    .close-menu-small-win {
+        display: none;
     }
 
 }

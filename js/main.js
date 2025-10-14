@@ -1,4 +1,8 @@
-import { allMovieGenres, allTvGenres, allGenres, moviesDiff, tvDiff } from './app.js'
+import { allMovieGenres, allTvGenres, moviesDiff, tvDiff, createTrendingMediaBox } from './app.js';
+import { createFiltersBox, mediaTypeChoose, createSelectFilter, resetAllFilters, filterMedia, primaryFiltersMode, filtersMode } from './filters.js';
+import { closeMenu } from './header.js';
+import { searchFavoriteMedia } from './favorites.js';
+
 const API_KEY = '99fabceee87bde49948fceafdc75073b';
 const API_BEARER_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5OWZhYmNlZWU4N2JkZTQ5OTQ4ZmNlYWZkYzc1MDczYiIsIm5iZiI6MTc1NDk5NzQzNS45MjQsInN1YiI6IjY4OWIyMmJiYThjYWU2ZDdhNThlYjQ5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kqH1yeq_zLXoukiudOGjZZ_gmHc9iUkYreVvqAbSkKA'
 const body = document.getElementsByTagName('body')[0];
@@ -10,8 +14,7 @@ const options = {
     Authorization: `Bearer ${API_BEARER_TOKEN}`
   }
 };
-let primaryFiltersMode = { mediaType: '', genre: [], fromYear: 0, toYear: 0 };
-let filtersMode;
+
 let urlsObj = { url: "", all: false };
 
 const sortOptions = ['original_title', 'popularity', 'revenue', 'primary_release_date', 'title', 'vote_average', 'vote_count']
@@ -28,7 +31,10 @@ async function searchResult(value) {
 
   urlsObj.url = `https://api.themoviedb.org/3/search/multi?query=${searchValue}`
 
-  resutlsPages(1);
+  const areResults = await resutlsPages(1);
+  if (!areResults) {
+    resultsTitle.textContent = `No search results for: "${value}"`;
+  }
 }
 
 async function resutlsPages(num) {
@@ -52,7 +58,6 @@ async function resutlsPages(num) {
   const searchInfo = { page: 0, totalPages: 0, results: 0, totalResults: 0 }
 
   let urls = [];
-  // console.log(urlsObj.url)
   urls.push(encodeURI(`${urlsObj.url}&page=${num * 2 - 1}`));
   urls.push(encodeURI(`${urlsObj.url}&page=${num * 2}`));
   for (let url of urls) {
@@ -65,15 +70,20 @@ async function resutlsPages(num) {
     searchInfo.results = results.length;
     searchInfo.totalPages = Math.ceil(response.total_pages / 2);
     searchInfo.totalResults = response.total_results
-
-    await createResultsBox(results, resultsContainer);
+    if (results.length === 0) {
+      return false
+    }
     containerBox.appendChild(resultsContainer);
+    await createResultsBox(results, resultsContainer);
+    if (response.total_pages === 1) {
+      break;
+    }
   }
   //pages box
   pagesBox = createPagesBox(num, searchInfo.totalPages);
   containerBox.appendChild(pagesBox);
 
-  return searchInfo;
+  return true;
 }
 
 function createTitle(title) {
@@ -84,132 +94,6 @@ function createTitle(title) {
   return resultsTitle;
 }
 
-function createFiltersBox() {
-  const filterBtn = document.createElement('i');
-  filterBtn.id = 'filter-btn';
-  filterBtn.className = 'bi bi-funnel-fill'
-  containerBox.appendChild(filterBtn);
-  const filtersBox = document.createElement('div');
-  filtersBox.className = 'filters-box hide-element';
-  //media type filter
-  const mediaType = document.createElement('div');
-  mediaType.className = 'filter-option media-type-filter';
-  mediaType.setAttribute('data-current-type', '');
-  filtersBox.appendChild(mediaType);
-  const mediaTypeTitle = document.createElement('p');
-  mediaTypeTitle.className = 'filter-title';
-  mediaTypeTitle.textContent = 'media type';
-  mediaType.appendChild(mediaTypeTitle);
-  const mediaTypes = ['movie', 'tv'];
-  for (let type of mediaTypes) {
-    const typeInput = document.createElement('input');
-    typeInput.setAttribute('type', 'radio');
-    typeInput.id = `media-type-${type}`;
-    typeInput.className = 'media-type-input';
-    typeInput.setAttribute('name', 'types');
-    typeInput.setAttribute('data-type', 'media-type-option');
-    if (type === 'movie') {
-      typeInput.setAttribute('checked', '');
-    }
-    mediaType.appendChild(typeInput);
-    const typeLabel = document.createElement('label');
-    typeLabel.setAttribute('for', typeInput.id);
-    typeLabel.className = 'media-type-label';
-    typeLabel.textContent = `${type}`;
-    mediaType.appendChild(typeLabel);
-  }
-  //genre filter
-  const genreFilter = createSelectFilter('genre', 'filter-option');
-  filtersBox.appendChild(genreFilter);
-  const genresList = document.createElement('div');
-  genresList.className = 'filter-list genre-filter-list hide-element';
-  const allGenresNoDuplicate = [...new Set(allGenres)];
-  for (let genre of allGenresNoDuplicate) {
-    const genreOption = createGenreOption(genre);
-    genresList.appendChild(genreOption);
-  }
-  genreFilter.appendChild(genresList);
-  hideDiffGenreOptions(genresList.children, tvDiff);
-  //year filter
-  const yearFilter = document.createElement('div');
-  yearFilter.className = 'filter-option year-filter';
-  filtersBox.appendChild(yearFilter);
-  const fromBox = createSelectFilter('from', 'year-filter-box');
-  yearFilter.appendChild(fromBox);
-  const fromYearList = createYearList('from-filter-list', 1874, 2026);
-  fromBox.appendChild(fromYearList);
-  const toBox = createSelectFilter('to', 'year-filter-box');
-  yearFilter.appendChild(toBox);
-  const toYearList = createYearList('to-filter-list', 1874, 2026);
-  toBox.appendChild(toYearList);
-  //fliter excute button
-  const filterExBtn = document.createElement('div');
-  filterExBtn.id = 'filter-ex-btn';
-  filterExBtn.textContent = 'Filter';
-  filtersBox.appendChild(filterExBtn);
-  return filtersBox;
-}
-
-function createYearList(id, start, end) {
-  const yearList = document.createElement('ul');
-  yearList.className = 'filter-list year-list hide-element';
-  yearList.classList.add(id);
-  for (let i = start; i <= end; i++) {
-    const yearOption = document.createElement('li');
-    yearOption.className = 'fliter-option year-option';
-    yearOption.setAttribute('data-type', 'year-option');
-    yearOption.textContent = i;
-    yearList.appendChild(yearOption);
-  }
-  return yearList;
-}
-
-function createSelectFilter(title, className) {
-  const filter = document.createElement('div');
-  filter.className = className;
-  filter.id = `${title}-filter`;
-  const fitle = document.createElement('p');
-  fitle.className = 'filter-title';
-  fitle.textContent = title;
-  filter.appendChild(fitle);
-  const selectBtn = document.createElement('div');
-  selectBtn.className = 'select-btn';
-  selectBtn.id = `${title}-filter-btn`;
-  selectBtn.setAttribute('data-type', 'select-filter');
-  const textBtn = document.createElement('p');
-  textBtn.classList = 'text-btn';
-  textBtn.setAttribute('data-type', 'select-filter');
-  selectBtn.appendChild(textBtn);
-  if (title === 'sort') {
-    fitle.textContent = '';
-    textBtn.textContent = 'popularity.desc'
-  }
-  const arrowDown = document.createElement('i');
-  arrowDown.className = 'arrow-down bi bi-chevron-down';
-  arrowDown.setAttribute('data-type', 'select-filter');
-  selectBtn.appendChild(arrowDown);
-  filter.appendChild(selectBtn);
-  return filter;
-}
-
-function createGenreOption(genre) {
-  const genreOption = document.createElement('div');
-  genreOption.className = 'fliter-option genre-option';
-  const genreOptionInput = document.createElement('input');
-  genreOptionInput.setAttribute('type', 'checkbox');
-  genreOptionInput.id = `genre-filter-${genre}`;
-  genreOptionInput.className = 'genre-option-input';
-  genreOptionInput.setAttribute('data-type', 'genre-option');
-  genreOption.appendChild(genreOptionInput);
-  const genreOptionLabel = document.createElement('label');
-  genreOptionLabel.setAttribute('for', genreOptionInput.id);
-  genreOptionLabel.setAttribute('title', ``)
-  genreOptionLabel.className = 'genre-option-label';
-  // genreOptionLabel.setAttribute('data-type', 'genre-option');
-  genreOptionLabel.textContent = genre;
-  genreOption.appendChild(genreOptionLabel);
-  return genreOption;
-}
 
 function createPagesBox(currentPage, totalPages) {
 
@@ -303,29 +187,54 @@ function pagesObj(currentPage, totalPages) {
   return pageObj;
 }
 
-async function createResultsBox(results, resultsContainer) {
-  // const resultsContainer = document.createElement('div');
-  // resultsContainer.id = `${type}-result-container`;
-  // resultsContainer.className = `result-container`;
-  // if (type === 'tv') {
-  //   resultsContainer.classList.add('hide-element');
-  // }
+function nextAndPrevBtn(element) {
+  const side = element.id.split('-')[0];
+  const currentpage = parseInt(document.querySelector('.current-page-btn').textContent);
+  console.log(currentpage)
+  const totalPages = parseInt(element.parentElement.lastElementChild.previousElementSibling.textContent);
+  let page;
+  if (side === 'next') {
+    if (currentpage === totalPages) {
+      return;
+    }
+    if (currentpage + 1 === totalPages) {
+      element.classList.add('hide-element');
+    }
+    if (currentpage === 1) {
+      document.getElementById('prev-arrow').classList.remove('hide-element');
+      console.log(document.getElementById('prev-arrow'))
+
+    }
+    page = currentpage + 1;
+  }
+  else {
+    if (currentpage === 1) {
+      return;
+    }
+    if (currentpage - 1 === 1) {
+      element.classList.add('hide-element');
+    }
+    if (currentpage === totalPages) {
+      element.parentElement.lastElementChild.classList.remove('hide-element');
+    }
+    page = currentpage - 1;
+  }
+  resutlsPages(page);
+}
+
+async function createResultsBox(results, resultsContainer,  fav = false) {
   for (let result of results) {
     const type = result.media_type ? result.media_type : filtersMode.mediaType;
     if (type !== 'person') {
-      const resultBox = await createResultCard(result, type);
-      resultsContainer.appendChild(resultBox);
+      const resultBox = await createResultCard(result, type, fav);
+      resultsContainer.appendChild(resultBox)
     }
   }
-
-  // return resultsContainer;
 }
 
-
-async function createResultCard(result, type) {
+async function createResultCard(result, type, fav = false) {
   const resultBox = document.createElement('div');
   resultBox.className = 'result-box';
-  // console.log(result.id);
   const imageBox = document.createElement('div');
   imageBox.className = 'image-box';
   resultBox.appendChild(imageBox);
@@ -334,12 +243,11 @@ async function createResultCard(result, type) {
   img.id = `img-${result.id}`;
   let imgBlob;
   if (result.poster_path !== null) {
-    imgBlob = await fetch(`https://image.tmdb.org/t/p/w300${result.poster_path}`).then(result => result.blob());
+    img.src = `https://image.tmdb.org/t/p/w300${result.poster_path}`;
   }
   else {
-    imgBlob = await fetch(`./images/no_image_available.jpg`).then(result => result.blob());
+    img.src = `./images/no_image_available.jpg`;
   }
-  img.src = URL.createObjectURL(imgBlob);
   img.setAttribute('alt', result.title);
   img.className = 'result-img';
   imageBox.appendChild(img);
@@ -348,14 +256,24 @@ async function createResultCard(result, type) {
   mediaType.className = 'media-type';
   mediaType.textContent = type;
   imageBox.appendChild(mediaType);
-  const playBtn1 = document.createElement('i');
-  playBtn1.className = 'play-btn1 bi bi-play-fill';
-  resultBox.appendChild(playBtn1)
-  const playBtn2 = document.createElement('i');
-  playBtn2.id = `playbtn-${result.id}`;
-  playBtn2.className = 'play-btn2 bi bi-play-circle-fill';
-  playBtn2.setAttribute('data-type', 'select-media');
-  resultBox.appendChild(playBtn2)
+  //select favorite checkbox 
+  if (fav){
+    const selectItemInput = document.createElement('input');
+    selectItemInput.setAttribute('type', 'checkbox')
+    selectItemInput.className = 'select-item-input';
+    selectItemInput.setAttribute('data-type', 'select-item-fav');
+    selectItemInput.setAttribute('data-media-detail', `${type}-${result.id}`);
+    imageBox.appendChild(selectItemInput);
+  }
+  // const playBtn1 = document.createElement('i');
+  // playBtn1.className = 'play-btn1 bi bi-play-fill';
+  // resultBox.appendChild(playBtn1)
+  // const playBtn2 = document.createElement('i');
+  // playBtn2.id = `playbtn-${result.id}`;
+  // playBtn2.className = 'play-btn2 bi bi-play-circle-fill';
+  // resultBox.appendChild(playBtn2)
+  img.setAttribute('data-type', 'select-media');
+  img.setAttribute('data-media-type', type);
   //name
   const resultTitle = document.createElement('p');
   resultTitle.id = `title-${result.id}`;
@@ -381,6 +299,11 @@ async function createResultCard(result, type) {
     }
   }
   resultInfo.appendChild(releaseYear);
+  //down arrow
+  const downArrow = document.createElement('i');
+  downArrow.className = 'more-detail-down-arrow bi bi-chevron-down';
+  downArrow.setAttribute('data-type', 'more-info');
+  resultInfo.appendChild(downArrow);
   //rate
   const rate = document.createElement('p');
   rate.className = 'rate';
@@ -392,192 +315,47 @@ async function createResultCard(result, type) {
   rate.appendChild(vote_avarge);
   resultInfo.appendChild(rate);
   resultBox.appendChild(resultInfo);
+  const moreInfoBox = document.createElement('div');
+  moreInfoBox.className = 'more-info-box';
+  resultBox.appendChild(moreInfoBox);
+  // const overview = document.createElement('p');
+  // overview.className = 'more-detail-overview'
+  // overview.textContent = result.overview;
+  // moreInfoBox.appendChild(overview)
+  const genres = document.createElement('p');
+  const genresNames = []
+
+  const genresKey = result.genre_ids ? result.genre_ids : result.genres;
+
+  for (let i = 0; i < 3 && i < genresKey.length; i++) {
+    const genre = genresKey[i];
+    if (genre.name){
+      genresNames.push(genre);
+    }
+    else{
+      let genreObj = allMovieGenres.find(item => item.id === genre);
+      if (genreObj === undefined) {
+        genreObj = allTvGenres.find(item => item.id === genre);
+      }
+      genresNames.push({name: genreObj.name});
+    }
+  } for (let genre of genresNames) {
+    const gen = createGenresOption(genre, '')
+    gen.classList.add('more-detail-genres')
+    genres.appendChild(gen);
+    const space = document.createTextNode(" ");
+    const space2 = document.createElement('span');
+    space2.textContent = 'aa';
+    space2.className = 'space'
+    genres.appendChild(space2)
+    genres.appendChild(space);
+  }
+  moreInfoBox.appendChild(genres)
   return resultBox;
 }
 
-function openFiltersBox() {
-  const filterBox = document.querySelector('.filters-box');
-  filterBox.classList.toggle('hide-element');
-}
 
-function openFilterLists(element) {
-  const type = element.parentElement.id.split('-')[0];
-  document.querySelector(`.${type}-filter-list`).classList.toggle('hide-element');
-  body.addEventListener('click', closeFilterList);
-}
-
-function closeFilterList(event) {
-  const element = event.target;
-  const filterLists = document.querySelectorAll('.filter-list');
-  if (element.parentElement.parentElement.classList.contains('genre-filter-list')) {
-    return;
-  }
-  if (!element.classList.contains('select-btn') && !element.parentElement.classList.contains('select-btn')) {
-    filterLists.forEach((filter) => { filter.classList.add('hide-element') })
-    body.removeEventListener('click', closeFilterList)
-  }
-  else {
-    filterLists.forEach((filter) => {
-      const type = filter.parentElement.id.split('-')[0];
-      if (type !== element.id.split('-')[0] && type !== element.parentElement.id.split('-')[0]) {
-        filter.classList.add('hide-element')
-      }
-    })
-  }
-}
-
-function genreOptionChoose(element) {
-  const genre = element.nextElementSibling.textContent;
-  const textBtn = element.parentElement.parentElement.previousElementSibling.children[0];
-  let newText = '';
-  if (element.checked) {
-    newText = textBtn.textContent === '' ? textBtn.textContent + `${genre}` : textBtn.textContent + `,${genre}`;
-  }
-  else {
-    const genreList = textBtn.textContent.split(',');
-    const genreIndex = genreList.indexOf(genre);
-    genreList.splice(genreIndex, 1);
-    newText = genreList.join(',');
-  }
-  primaryFiltersMode.genre = newText.split(',');
-  textBtn.textContent = newText;
-  textBtn.setAttribute('title', newText);
-}
-
-function yearOptionChoose(element) {
-  const elementYear = parseInt(element.textContent);
-  if (element.parentElement.classList.contains('from-filter-list')) {
-    const toLists = document.querySelector('.to-filter-list');
-    toLists.previousElementSibling.children[0].textContent = '';
-    const allToYear = toLists.children;
-    for (let year of allToYear) {
-      if (parseInt(year.textContent) < elementYear) {
-        year.classList.add('hide-element');
-      }
-      else {
-        year.classList.remove('hide-element');
-      }
-    }
-    primaryFiltersMode.fromYear = elementYear;
-    primaryFiltersMode.toYear = 0;
-  }
-  else {
-    primaryFiltersMode.toYear = elementYear
-  }
-
-  const textBtn = element.parentElement.previousElementSibling.children[0];
-  textBtn.textContent = elementYear;
-}
-
-function mediaTypeChoose(element, check = true) {
-  const type = element.id.split('-')[2];
-  if (check) {
-    const prevType = element.parentElement.getAttribute('data-current-type');
-    if (prevType === type) {
-      return;
-    }
-  }
-  else {
-    element.checked = true;
-  }
-  const allFilterLists = document.querySelectorAll('.filter-list');
-  const fromChildren = allFilterLists[1].children;
-  const toChildren = allFilterLists[2].children;
-  // allFilterLists[0].previousElementSibling.children[0].textContent = ''
-  // allFilterLists[1].previousElementSibling.children[0].textContent = '';
-  // allFilterLists[2].previousElementSibling.children[0].textContent = '';
-  const genreChildren = allFilterLists[0].children;
-
-  if (type === 'movie') {
-    primaryFiltersMode.mediaType = 'movie';
-    hideDiffGenreOptions(genreChildren, tvDiff);
-    showAllYearOptions(fromChildren, toChildren)
-  }
-  else if (type === 'tv') {
-    primaryFiltersMode.mediaType = 'tv';
-    hideDiffGenreOptions(genreChildren, moviesDiff);
-
-    for (let i = 0; i < fromChildren.length; i++) {
-      if (parseInt(fromChildren[i].textContent) < 1949) {
-        fromChildren[i].classList.add('hide-element');
-        toChildren[i].classList.add('hide-element');
-      }
-      else {
-        toChildren[i].classList.remove('hide-element');
-      }
-    }
-  }
-  resetAllFilters();
-  element.parentElement.setAttribute('data-current-type', type);
-}
-
-function showAllYearOptions(fromChildren, toChildren) {
-  for (let i = 0; i < fromChildren.length; i++) {
-    fromChildren[i].classList.remove('hide-element');
-    toChildren[i].classList.remove('hide-element');
-  }
-}
-
-function hideDiffGenreOptions(genreChildren, diff) {
-  let i = 0;
-  for (let genreOption of genreChildren) {
-    if (genreOption.children[1].textContent === diff[i]) {
-      genreOption.classList.add('hide-element');
-      i++;
-    }
-    else {
-      genreOption.classList.remove('hide-element');
-    }
-  }
-}
-
-function resetAllFilters() {
-  primaryFiltersMode.fromYear = 0;
-  primaryFiltersMode.toYear = 0;
-  primaryFiltersMode.genre = [];
-  const allTextBtn = document.querySelectorAll('.text-btn');
-  allTextBtn.forEach(btn => btn.textContent = '');
-  const genreList = document.querySelector('.genre-filter-list').children;
-  for (let genreOption of genreList) {
-    const genreInput = genreOption.firstElementChild;
-    if (genreInput.checked) {
-      genreInput.checked = false
-    }
-  }
-}
-
-function filterMedia() {
-  filtersMode = JSON.parse(JSON.stringify(primaryFiltersMode));
-  let fromYear = '';
-  let toYear = '';
-  let genres = '';
-  const type = filtersMode.mediaType;
-  const yearFilter = type === 'movie' ? 'primary_release_date' : 'first_air_date';
-
-  if (filtersMode.fromYear !== 0) {
-    fromYear = `&${yearFilter}.gte=${filtersMode.fromYear}-01-01`;
-  }
-
-  if (filtersMode.toYear !== 0) {
-    toYear = `&${yearFilter}.lte=${filtersMode.toYear}-01-01`;
-  }
-
-  if (filtersMode.genre.length > 0) {
-    const genresId = []
-    for (let genre of filtersMode.genre) {
-      let genreObj = allMovieGenres.find(item => item.name === genre);
-      if (genreObj === undefined) {
-        genreObj = allTvGenres.find(item => item.name === genre);
-      }
-      genresId.push(genreObj.id);
-    }
-    genres = `&with_genres=${genresId.join(',')}`;
-  }
-
-  urlsObj.url = `https://api.themoviedb.org/3/discover/${type}?include_adult=false&with_original_language=en${fromYear}${toYear}${genres}&without_genres=10749`;
-}
-
-function mediaResults(element) {
+async function mediaResults(element) {
   const type = element.getAttribute('data-search-type');
   let titleTop;
   if (type === 'movie' || type === 'tv') {
@@ -616,23 +394,39 @@ function mediaResults(element) {
   if (document.querySelector('.win-blocker')) {
     closeMenu()
   }
+
+  createBasicResultPage(titleTop, `No results for: "${titleTop}"`);
+}
+
+async function createBasicResultPage(titleTop, newTitle) {
   containerBox.replaceChildren();
   const title = createTitle(titleTop);
   containerBox.appendChild(title)
   const filtersBox = createFiltersBox();
   containerBox.appendChild(filtersBox);
+  const sortMain = document.createElement('div');
+  sortMain.className = 'sort-main';
+  containerBox.appendChild(sortMain)
+  const sortTitle = document.createElement('span');
+  sortTitle.className = 'sort-title filter-title';
+  sortTitle.textContent = 'sort by';
+  sortMain.appendChild(sortTitle)
   const sortBox = createSelectFilter('sort', 'sort-filter');
-  containerBox.appendChild(sortBox);
+  sortMain.appendChild(sortBox);
   const sortList = createSortList();
   sortBox.appendChild(sortList)
-  resutlsPages(1)
+  const areResults = await resutlsPages(1);
+  if (!areResults) {
+    title.textContent = newTitle;
+    sortBox.remove()
+  }
 }
 
-function filterBtnClick() {
+async function filterBtnClick() {
   filterMedia();
   const mediaType = document.getElementById('media-type-movie')
   mediaTypeChoose(mediaType, false);
-  resutlsPages(1);
+  createBasicResultPage(`Filter results:`, `No filter result:`)
 }
 
 function createSortList() {
@@ -661,15 +455,15 @@ function sortOptionChoose(element) {
   const textBtn = element.parentElement.previousElementSibling.children[0];
   textBtn.textContent = sortOption;
   const sortOptionUrl = sortOption.split(' ').join('_');
-  console.log(sortOptionUrl);
   urlsObj.url += `&sort_by=${sortOptionUrl}`;
   resutlsPages(1);
 }
 
 async function showSelectedMedia(element) {
   const id = element.id.split('-')[1];
-  console.log(id);
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?append_to_response=credits`, options)
+  // console.log(id);
+  const type = element.getAttribute('data-media-type');
+  const response = await fetch(`https://api.themoviedb.org/3/${type}/${id}?append_to_response=credits,external_ids`, options)
     .then(response => response.json())
     .catch(err => console.error(err));
 
@@ -689,12 +483,11 @@ async function showSelectedMedia(element) {
   img.className = 'film-image';
   let imgBlob;
   if (response.poster_path) {
-    imgBlob = await fetch(`https://image.tmdb.org/t/p/w300${response.poster_path}`).then(result => result.blob());
+    img.src = `https://image.tmdb.org/t/p/w500${response.poster_path}`;
   }
   else {
-    imgBlob = await fetch(`./images/no_image_available.jpg`).then(result => result.blob());
+    img.src = `./images/no_image_available.jpg`;
   }
-  img.src = URL.createObjectURL(imgBlob);
   img.alt = response.title;
   filmDetails.appendChild(img);
   // film name
@@ -702,7 +495,7 @@ async function showSelectedMedia(element) {
   detailsDiv.className = 'all-details';
   const filmName = document.createElement('h1');
   filmName.className = 'film-name'
-  filmName.textContent = response.title;
+  filmName.textContent = type === 'movie' ? response.title : response.name;
   detailsDiv.appendChild(filmName);
   // opening crawl
   const overview = document.createElement('p');
@@ -716,7 +509,7 @@ async function showSelectedMedia(element) {
   release_title.className = 'detail-titles';
   release_title.textContent = 'Released: ';
   released.appendChild(release_title);
-  const date = document.createTextNode(`${response.release_date}`);
+  const date = document.createTextNode(`${type === 'movie' ? response.release_date : response.first_air_date}`);
   released.appendChild(date);
   detailsDiv.appendChild(released);
   // runtime
@@ -724,22 +517,27 @@ async function showSelectedMedia(element) {
   const runtime = document.createElement('p');
   runtime.className = 'details-p';
   runtime_title.className = 'detail-titles';
-  runtime_title.textContent = 'Duration: ';
+  runtime_title.textContent = type === 'movie' ? 'Duration: ' : 'Seasons: ';
   runtime.appendChild(runtime_title);
   let duration = ''
-  if (response.runtime) {
-    const durInt = parseInt(response.runtime);
-    const hour = Math.floor(durInt / 60);
-    const min = durInt % 60;
-    if (hour > 0) {
-      duration += `${hour}h `;
+  if (type === 'movie') {
+    if (response.runtime) {
+      const durInt = parseInt(response.runtime);
+      const hour = Math.floor(durInt / 60);
+      const min = durInt % 60;
+      if (hour > 0) {
+        duration += `${hour}h `;
+      }
+      if (min > 0) {
+        duration += `${min}m`;
+      }
     }
-    if (min > 0) {
-      duration += `${min}m`;
+    else {
+      duration = 'unknown';
     }
   }
   else {
-    duration = 'unknown';
+    duration = response.number_of_seasons;
   }
   const dur = document.createTextNode(`${duration}`);
   runtime.appendChild(dur);
@@ -752,7 +550,7 @@ async function showSelectedMedia(element) {
   genres_title.textContent = 'Genres: ';
   genres.appendChild(genres_title);
   for (let genre of response.genres) {
-    const gen = createGenresOption(genre)
+    const gen = createGenresOption(genre, ',')
     genres.appendChild(gen);
     const space = document.createTextNode(' ');
     genres.appendChild(space);
@@ -785,25 +583,52 @@ async function showSelectedMedia(element) {
   rate.appendChild(vote_average);
   detailsDiv.appendChild(rate);
   filmDetails.appendChild(detailsDiv)
+  // button box
+  const btnsBox = document.createElement('div');
+  btnsBox.className = 'btns-box-media-detail';
+  containerBox.appendChild(btnsBox);
   // add to favoirte button
   const addFavoriteBtn = document.createElement('div');
   addFavoriteBtn.id = 'add-favor-btn';
-  addFavoriteBtn.className = 'add-to-favorite-btn';
+  addFavoriteBtn.className = 'media-detail-btn';
+  addFavoriteBtn.setAttribute('data-media-detail', `${type}-${id}`);
   const star = document.createElement('span');
   star.className = 'rate-star';
   star.innerHTML = '&#9733;';
   addFavoriteBtn.appendChild(star)
-  const textBtn = document.createTextNode(` Add to favorite`);
+  const textBtn = document.createTextNode(` Add to Favorite`);
   addFavoriteBtn.appendChild(textBtn);
-  filmDetails.appendChild(addFavoriteBtn);
+  btnsBox.appendChild(addFavoriteBtn);
+  // remove from favorite button
+  const removeFavoriteBtn = document.createElement('div')
+  removeFavoriteBtn.id = 'rm-favor-btn';
+  removeFavoriteBtn.className = 'media-detail-btn hide-element';
+  removeFavoriteBtn.setAttribute('data-media-detail', `${type}-${id}`);
+  removeFavoriteBtn.textContent = 'Remove from Favorites';
+  btnsBox.appendChild(removeFavoriteBtn);
+  searchFavoriteMedia(addFavoriteBtn);
+  // watch online
+  const externalIds = response.external_ids;
+  if (externalIds && externalIds.imdb_id) {
+    const watchOnlineBtn = document.createElement('div');
+    watchOnlineBtn.id = 'watch-online-btn';
+    watchOnlineBtn.className = 'media-detail-btn';
+    watchOnlineBtn.setAttribute('data-imdb-id', externalIds.imdb_id)
+    console.log(externalIds.imdb_id);
+    watchOnlineBtn.textContent = 'Watch Online';
+    btnsBox.appendChild(watchOnlineBtn);
+  }
+  //similar media box
+  const similarBox = await similarMedia(id, type);
+  containerBox.appendChild(similarBox);
 }
 
-function createGenresOption(genre) {
+function createGenresOption(genre, sap) {
   let gen = document.createElement('span');
   gen.className = 'detail-list';
   gen.setAttribute('data-type', 'show-media');
   gen.setAttribute('data-search-type', 'genre');
-  gen.textContent = `${genre.name},`;
+  gen.textContent = `${genre.name}${sap}`;
   return gen;
 }
 
@@ -816,8 +641,24 @@ function createActorsOption(actor) {
   return act;
 }
 
+function similarMedia(id, type) {
+  const url = `https://api.themoviedb.org/3/${type}/${id}/similar?`;
+  primaryFiltersMode.mediaType = type;
+  filterMedia(url);
+  const similarBox = createTrendingMediaBox(type, url, 'Similar Media', 'All similar media', 'all-similar');
+  return similarBox;
+}
+
+function showAllSimilar(element) {
+  const name = document.querySelector('.film-name').textContent;
+  const type = element.id.split('-')[3];
+  containerBox.replaceChildren();
+  const title = createTitle(`Similar ${type}s to ${name}:`);
+  containerBox.appendChild(title);
+  resutlsPages(1);
+}
+
 export {
-  searchResult, resutlsPages, openFiltersBox, openFilterLists, genreOptionChoose,
-  yearOptionChoose, mediaTypeChoose, filterBtnClick, sortOptionChoose, mediaResults, showSelectedMedia,
-  createResultsBox, urlsObj, createTitle
+  searchResult, resutlsPages, filterBtnClick, sortOptionChoose, mediaResults, showSelectedMedia,
+  createResultsBox, urlsObj, createTitle, resetAllFilters, showAllSimilar, nextAndPrevBtn
 }
