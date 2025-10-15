@@ -23,7 +23,7 @@ async function searchResult(value) {
   const searchValue = encodeURIComponent(value);
   containerBox.replaceChildren();
   //results title
-  const resultsTitle = createTitle(`Search results for: "${value}"`);
+  const resultsTitle = createTitle(``);
   containerBox.appendChild(resultsTitle);
   //filters box
   const filtersBox = createFiltersBox();
@@ -32,8 +32,13 @@ async function searchResult(value) {
   urlsObj.url = `https://api.themoviedb.org/3/search/multi?query=${searchValue}`
 
   const areResults = await resutlsPages(1);
-  if (!areResults) {
+  if (areResults) {
+    resultsTitle.textContent = `Search results for: "${value}"`;
+  }
+  else if (!areResults) {
     resultsTitle.textContent = `No search results for: "${value}"`;
+    document.getElementById('filter-btn').remove()
+    filtersBox.remove();
   }
 }
 
@@ -222,7 +227,7 @@ function nextAndPrevBtn(element) {
   resutlsPages(page);
 }
 
-async function createResultsBox(results, resultsContainer,  fav = false) {
+async function createResultsBox(results, resultsContainer, fav = false) {
   for (let result of results) {
     const type = result.media_type ? result.media_type : filtersMode.mediaType;
     if (type !== 'person') {
@@ -257,7 +262,7 @@ async function createResultCard(result, type, fav = false) {
   mediaType.textContent = type;
   imageBox.appendChild(mediaType);
   //select favorite checkbox 
-  if (fav){
+  if (fav) {
     const selectItemInput = document.createElement('input');
     selectItemInput.setAttribute('type', 'checkbox')
     selectItemInput.className = 'select-item-input';
@@ -329,15 +334,15 @@ async function createResultCard(result, type, fav = false) {
 
   for (let i = 0; i < 3 && i < genresKey.length; i++) {
     const genre = genresKey[i];
-    if (genre.name){
+    if (genre.name) {
       genresNames.push(genre);
     }
-    else{
+    else {
       let genreObj = allMovieGenres.find(item => item.id === genre);
       if (genreObj === undefined) {
         genreObj = allTvGenres.find(item => item.id === genre);
       }
-      genresNames.push({name: genreObj.name});
+      genresNames.push({ name: genreObj.name });
     }
   } for (let genre of genresNames) {
     const gen = createGenresOption(genre, '')
@@ -400,7 +405,7 @@ async function mediaResults(element) {
 
 async function createBasicResultPage(titleTop, newTitle) {
   containerBox.replaceChildren();
-  const title = createTitle(titleTop);
+  const title = createTitle('');
   containerBox.appendChild(title)
   const filtersBox = createFiltersBox();
   containerBox.appendChild(filtersBox);
@@ -416,9 +421,14 @@ async function createBasicResultPage(titleTop, newTitle) {
   const sortList = createSortList();
   sortBox.appendChild(sortList)
   const areResults = await resutlsPages(1);
-  if (!areResults) {
+  if (areResults){
+    title.textContent = titleTop;
+  }
+  else if (!areResults) {
     title.textContent = newTitle;
-    sortBox.remove()
+    sortMain.remove()
+    filtersBox.remove();
+    document.getElementById('filter-btn').remove()
   }
 }
 
